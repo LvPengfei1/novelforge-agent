@@ -54,7 +54,7 @@ llm-wiki
 
 ## 使用流程
 
-本文件是操作摘要。强制规则以根目录 `AGENTS.md` 和 `wiki/chapters/_chapter-spine-template.md` 的同步检查清单为准。
+本文件是操作摘要。强制规则以根目录 `claude.md` 和 `wiki/chapters/_chapter-spine-template.md` 的同步检查清单为准。
 
 ### 1. 导入前
 

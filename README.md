@@ -16,7 +16,7 @@ NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用
 
 ```text
 .
-├── AGENTS.md
+├── claude.md
 ├── NOTICE
 ├── LICENSE
 ├── docs
@@ -98,7 +98,7 @@ ch003-spine.md
 
 ## 关键文件
 
-- `AGENTS.md`：智能体项目级行为规则。
+- `claude.md`：智能体项目级行为规则。
 - `docs/novel-agent-plan.md`：完整方案说明。
 - `llm-wiki/wiki/book-spine.md`：全书龙骨。
 - `llm-wiki/wiki/chapters/_chapter-spine-template.md`：章节龙骨模板。
