@@ -1,0 +1,10 @@
+NovelForge-Agent
+Copyright 2026 LvPengfei
+
+This project provides an llm-wiki based framework for long-form novel writing
+agents, including project rules, knowledge-base structure, chapter spine
+templates, continuity ledgers, and related Markdown workflows.
+
+If you modify this project and distribute your modified version, you must
+clearly state that changes were made and describe the major changes.
+
