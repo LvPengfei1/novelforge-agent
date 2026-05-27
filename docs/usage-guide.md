@@ -2,7 +2,7 @@
 
 本手册说明如何从零开始使用 NovelForge-Agent 项目框架进行长篇小说创作。
 
-本手册内容由 袁锐钦 Ruiqin 提供，并已根据本仓库现有 `AGENTS.md` / `Claude.md` 规则文件整理适配。Codex 等支持 `AGENTS.md` 的工具读取 `AGENTS.md`；Claude 工作流可读取 `Claude.md`。两个文件应保持同内容、同规则。
+本手册内容由 袁锐钦 Ruiqin 提供，并已根据本仓库现有 `AGENTS.md` / `Claude.md` 规则文件整理适配。Codex 等支持 `AGENTS.md` 的工具读取 `AGENTS.md`；Claude 工作流可读取 `Claude.md`。两个文件应保持规则内容等价，允许文件名表述按工具适配。
 
 ---
 
@@ -235,7 +235,7 @@ AI 应按章节龙骨模板中的同步检查清单逐项处理：
 | 文件 | 职责 |
 |------|------|
 | `AGENTS.md` | Codex 等 agent 的项目级行为规则 |
-| `Claude.md` | Claude 工作流使用的项目级行为规则，内容应与 `AGENTS.md` 保持一致 |
+| `Claude.md` | Claude 工作流使用的项目级行为规则，规则内容应与 `AGENTS.md` 保持等价 |
 | `llm-wiki/wiki/index.md` | 内容索引，写作/查询前必读 |
 | `llm-wiki/wiki/book-spine.md` | 全书主线龙骨（压缩版） |
 | `llm-wiki/wiki/chapters/chXXX-spine.md` | 每章剧情龙骨 |

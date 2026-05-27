@@ -1,6 +1,6 @@
 # llm-wiki 接入说明
 
-本目录用于按 llm-wiki 模式管理小说项目设定。在没有专用工具时，Codex 也应按本目录规则维护 wiki。
+本目录用于按 llm-wiki 模式管理小说项目设定。在没有专用工具时，Codex 可按 `AGENTS.md` 维护 wiki，Claude 可按 `Claude.md` 维护 wiki。
 
 ## 定位
 
@@ -54,7 +54,7 @@ llm-wiki
 
 ## 使用流程
 
-本文件是操作摘要。强制规则以根目录 `AGENTS.md` 和 `wiki/chapters/_chapter-spine-template.md` 的同步检查清单为准。
+本文件是操作摘要。强制规则以根目录项目规则文件（`AGENTS.md` / `Claude.md`）和 `wiki/chapters/_chapter-spine-template.md` 的同步检查清单为准。
 
 ### 1. 导入前
 

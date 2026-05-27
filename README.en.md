@@ -113,7 +113,7 @@ A chapter is not considered complete until the manuscript and the related `llm-w
 
 - Use `AGENTS.md` with Codex or other agents that read AGENTS rules.
 - Use `Claude.md` with Claude-based workflows.
-- Keep both files synchronized. They define the same project behavior rules.
+- Keep both files semantically synchronized. They define the same project behavior rules, with file names adapted for each agent.
 
 ## License
 

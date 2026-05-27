@@ -40,3 +40,10 @@
 - 影响页面：AGENTS.md、docs/novel-agent-plan.md、llm-wiki/README.md、llm-wiki/wiki/index.md、llm-wiki/wiki/book-spine.md、llm-wiki/wiki/chapters/_chapter-spine-template.md、llm-wiki/wiki/timeline.md、llm-wiki/wiki/character-states.md、llm-wiki/wiki/relationship-states.md、llm-wiki/wiki/foreshadowing-ledger.md、llm-wiki/wiki/contradiction-flags.md
 - 处理结果：建立全书龙骨、章节龙骨模板和章后连续性账本；规定章节完成必须同步龙骨、时间线、人物状态、关系、伏笔和矛盾标记
 - 是否影响 novel/ 正文或草稿：否，当前为项目管理规则和 llm-wiki 模板
+
+## [2026-05-28] update | AGENTS 与 Claude 规则入口同步
+
+- 来源：用户要求排查其他文档中只指向单一项目规则文件的说明并一并修正
+- 影响页面：AGENTS.md、Claude.md、README.md、README.en.md、docs/usage-guide.md、docs/novel-agent-plan.md、llm-wiki/README.md
+- 处理结果：将规则引用统一为项目规则文件（AGENTS.md / Claude.md），保留 Codex 与 Claude 各自入口；Claude.md 除标题外与 AGENTS.md 保持规则内容一致
+- 是否影响 novel/ 正文或草稿：否，当前为项目规则和说明文档同步

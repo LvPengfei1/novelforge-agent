@@ -111,7 +111,7 @@ ch003-spine.md
 ## 关键文件
 
 - `AGENTS.md`：智能体项目级行为规则。
-- `Claude.md`：Claude 工作流使用的项目级行为规则，内容应与 `AGENTS.md` 保持一致。
+- `Claude.md`：Claude 工作流使用的项目级行为规则，规则内容应与 `AGENTS.md` 保持等价。
 - `README.en.md`：英文版项目说明。
 - `docs/usage-guide.md`：从零开始使用 NovelForge-Agent 的中文手册。
 - `docs/novel-agent-plan.md`：完整方案说明。

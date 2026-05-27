@@ -19,6 +19,7 @@
 ```text
 E:\小说智能体
 ├── AGENTS.md
+├── Claude.md
 ├── docs
 │   └── novel-agent-plan.md
 ├── raw
@@ -132,7 +133,7 @@ ch001-scene-02.md
 
 ### 2.1 章节龙骨
 
-本节是方案摘要。强制规则以 `AGENTS.md` 和 `llm-wiki/wiki/chapters/_chapter-spine-template.md` 的同步检查清单为准。
+本节是方案摘要。强制规则以项目规则文件（`AGENTS.md` / `Claude.md`）和 `llm-wiki/wiki/chapters/_chapter-spine-template.md` 的同步检查清单为准。
 
 每章必须在 `llm-wiki/wiki/chapters/` 下维护一个章节龙骨文件。
 
@@ -244,8 +245,8 @@ llm-wiki 是日常资料入口。它负责：
 - `agents/continuity-agent.md`：连续性审查智能体。
 - `agents/style-agent.md`：文风润色智能体。
 
-当前阶段建议先使用一个项目级 `AGENTS.md`，避免过早拆分导致维护成本上升。
+当前阶段建议先使用一套项目级规则文件（Codex 使用 `AGENTS.md`，Claude 使用 `Claude.md`），避免过早拆分导致维护成本上升。
 
 ## 当前本机状态
 
-本项目已经建立 llm-wiki 目录和规则；即使没有专用工具，也可以由 Codex 按 `AGENTS.md`、`llm-wiki/README.md`、`llm-wiki/wiki/index.md` 和 `llm-wiki/wiki/log.md` 维护这套知识库。
+本项目已经建立 llm-wiki 目录和规则；即使没有专用工具，也可以由 Codex 按 `AGENTS.md`，或由 Claude 按 `Claude.md`，结合 `llm-wiki/README.md`、`llm-wiki/wiki/index.md` 和 `llm-wiki/wiki/log.md` 维护这套知识库。
