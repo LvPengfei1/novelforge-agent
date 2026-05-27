@@ -4,6 +4,14 @@ NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用
 
 本项目不是具体小说正文，而是一套可复用的小说写作项目结构和智能体行为规则。
 
+## 文档入口
+
+- 英文版 README：[README.en.md](README.en.md)
+- 使用手册：[docs/usage-guide.md](docs/usage-guide.md)
+- Codex 项目规则：[AGENTS.md](AGENTS.md)
+- Claude 项目规则：[Claude.md](Claude.md)
+- 完整方案：[docs/novel-agent-plan.md](docs/novel-agent-plan.md)
+
 ## 核心目标
 
 - 让每一本小说作为独立项目持续创作。
@@ -17,10 +25,14 @@ NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用
 ```text
 .
 ├── AGENTS.md
+├── Claude.md
+├── README.md
+├── README.en.md
 ├── NOTICE
 ├── LICENSE
 ├── docs
-│   └── novel-agent-plan.md
+│   ├── novel-agent-plan.md
+│   └── usage-guide.md
 ├── raw
 │   └── README.md
 ├── novel
@@ -99,6 +111,9 @@ ch003-spine.md
 ## 关键文件
 
 - `AGENTS.md`：智能体项目级行为规则。
+- `Claude.md`：Claude 工作流使用的项目级行为规则，内容应与 `AGENTS.md` 保持一致。
+- `README.en.md`：英文版项目说明。
+- `docs/usage-guide.md`：从零开始使用 NovelForge-Agent 的中文手册。
 - `docs/novel-agent-plan.md`：完整方案说明。
 - `llm-wiki/wiki/book-spine.md`：全书龙骨。
 - `llm-wiki/wiki/chapters/_chapter-spine-template.md`：章节龙骨模板。
@@ -110,4 +125,3 @@ ch003-spine.md
 本项目使用 Apache License 2.0 开源。
 
 如果你修改本项目并分发修改后的版本，必须清楚标注已做修改，并说明主要变更。详见 `LICENSE` 和 `NOTICE`。
-
