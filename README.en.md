@@ -1,6 +1,6 @@
 # NovelForge-Agent
 
-NovelForge-Agent is a reusable agent framework for long-form novel writing. It uses `llm-wiki` as the daily knowledge entry point for story facts, settings, characters, plot outline, chapter spines, timelines, foreshadowing, and continuity checks.
+NovelForge-Agent is a reusable agent framework for long-form novel writing. It uses `llm-wiki` as the daily knowledge entry point for story facts, settings, characters, the overall plot outline, timelines, foreshadowing, and continuity checks. Per-chapter spines live under `novel/03_plot/chapters/` and are reached through `llm-wiki/wiki/outline.md`.
 
 This repository is not a finished novel. It is a project structure and behavior-rule set for AI-assisted fiction writing.
 
@@ -43,6 +43,7 @@ This repository is not a finished novel. It is a project structure and behavior-
 │   ├── 01_world
 │   ├── 02_characters
 │   ├── 03_plot
+│   │   └── chapters
 │   ├── 04_scenes
 │   ├── 05_manuscript
 │   ├── 06_research
@@ -52,12 +53,6 @@ This repository is not a finished novel. It is a project structure and behavior-
     ├── llm-wiki说明.md
     ├── ingest-manifest.md
     ├── query-prompts.md
-    ├── process
-    │   ├── 流程层.md
-    │   ├── outline.md
-    │   └── chapters
-    │       ├── 章节龙骨目录.md
-    │       └── _chapter-spine-template.md
     ├── templates
     │   ├── character-card-template.md
     │   ├── location-card-template.md
@@ -75,6 +70,7 @@ This repository is not a finished novel. It is a project structure and behavior-
         ├── relationship-states.md
         ├── foreshadowing-ledger.md
         ├── contradiction-flags.md
+        ├── outline.md
         ├── index.md
         ├── log.md
         ├── characters
@@ -94,17 +90,17 @@ Original source layer. Store user-provided materials, clipped web pages, referen
 
 ### `novel/`
 
-Novel engineering layer. Store manuscript drafts, finished chapters, writing process files, and backups here. It is not the daily source for story-setting lookup.
+Novel engineering layer. Store manuscript drafts, finished chapters, chapter spines, writing process files, and backups here. It is not the daily source for story-setting lookup; chapter spines are read when the wiki outline points to them.
 
 ### `llm-wiki/`
 
 Knowledge and setting layer. Store AI-maintained wiki pages, indexes, logs, query notes, continuity ledgers, and contradiction checks here. Normal writing, querying, reviewing, and continuity work should start from this layer.
 
-`llm-wiki/wiki/` stores final graph nodes. `llm-wiki/process/outline.md` stores the plot outline that connects chapter groups and stage progression. `llm-wiki/process/chapters/` stores per-chapter spines.
+`llm-wiki/wiki/` stores final graph nodes. `llm-wiki/wiki/outline.md` stores the plot outline that connects chapter groups and stage progression. `novel/03_plot/chapters/` stores per-chapter spines.
 
 ## Chapter Spine Workflow
 
-Every chapter should have a chapter spine under `llm-wiki/process/chapters/`, for example:
+Every chapter should have a chapter spine under `novel/03_plot/chapters/`, for example:
 
 ```text
 ch001-spine.md
@@ -132,7 +128,7 @@ Default chapter length is about 3,000 Chinese characters. A normal chapter shoul
 
 1. Put original materials into `raw/`.
 2. Ingest long-term story facts into `llm-wiki/`.
-3. Before writing, read `llm-wiki/wiki/index.md`, `book-spine.md`, `process/outline.md`, the current chapter spine, and related character, timeline, and foreshadowing pages.
+3. Before writing, read `llm-wiki/wiki/index.md`, `book-spine.md`, `llm-wiki/wiki/outline.md`, the current chapter spine, and related character, timeline, and foreshadowing pages.
 4. Write the manuscript in `novel/05_manuscript/`.
 5. After writing, update the chapter spine, plot outline, book spine, timeline, character states, relationship states, foreshadowing ledger, contradiction flags, index, and log.
 6. Run a node-gap check: reusable characters, locations, organizations, rules, items, important scenes, and foreshadowing should not remain only in index summaries or templates.

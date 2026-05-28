@@ -1,6 +1,6 @@
 # NovelForge-Agent
 
-NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用 `llm-wiki` 作为小说资料的日常唯一入口，通过全书龙骨、剧情总纲、章节龙骨、人物状态账本、伏笔账本和矛盾标记，帮助作者在持续创作中保持主线、人物、时间线和设定一致。
+NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用 `llm-wiki` 作为小说资料的日常检索入口，通过全书龙骨、总体大纲、章节龙骨、人物状态账本、伏笔账本和矛盾标记，帮助作者在持续创作中保持主线、人物、时间线和设定一致。单章龙骨存放在 `novel/03_plot/chapters/`，由 `llm-wiki/wiki/outline.md` 统一关联。
 
 本项目不是具体小说正文，而是一套可复用的小说写作项目结构和智能体行为规则。
 
@@ -42,6 +42,7 @@ NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用
 │   ├── 01_world
 │   ├── 02_characters
 │   ├── 03_plot
+│   │   └── chapters
 │   ├── 04_scenes
 │   ├── 05_manuscript
 │   ├── 06_research
@@ -51,12 +52,6 @@ NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用
     ├── llm-wiki说明.md
     ├── ingest-manifest.md
     ├── query-prompts.md
-    ├── process
-    │   ├── 流程层.md
-    │   ├── outline.md
-    │   └── chapters
-    │       ├── 章节龙骨目录.md
-    │       └── _chapter-spine-template.md
     ├── templates
     │   ├── character-card-template.md
     │   ├── location-card-template.md
@@ -74,6 +69,7 @@ NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用
         ├── relationship-states.md
         ├── foreshadowing-ledger.md
         ├── contradiction-flags.md
+        ├── outline.md
         ├── index.md
         ├── log.md
         ├── characters
@@ -99,11 +95,11 @@ NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用
 
 资料与设定层。保存由智能体维护的 wiki 页面、索引、日志、查询记录和矛盾检查结果。日常写作、查询、审查和连续性检查都优先从这里读取资料。
 
-其中 `llm-wiki/wiki/` 是最终图谱节点层；`llm-wiki/process/outline.md` 是剧情总纲，用于串联章节龙骨和整体发展脉络；`llm-wiki/process/chapters/` 保存单章龙骨。
+其中 `llm-wiki/wiki/` 是最终图谱节点层；`llm-wiki/wiki/outline.md` 是剧情总纲，用于串联章节龙骨和整体发展脉络；`novel/03_plot/chapters/` 保存单章龙骨。
 
 ## 章节龙骨机制
 
-每章必须在 `llm-wiki/process/chapters/` 下维护一个章节龙骨文件，例如：
+每章必须在 `novel/03_plot/chapters/` 下维护一个章节龙骨文件，例如：
 
 ```text
 ch001-spine.md
@@ -131,7 +127,7 @@ ch003-spine.md
 
 1. 将原始资料放入 `raw/`。
 2. 将需要长期检索、交叉引用和防矛盾的内容整理进 `llm-wiki/`。
-3. 写作前读取 `llm-wiki/wiki/index.md`、`book-spine.md`、`process/outline.md`、当前章节龙骨和相关人物/伏笔/时间线页面。
+3. 写作前读取 `llm-wiki/wiki/index.md`、`book-spine.md`、`llm-wiki/wiki/outline.md`、当前章节龙骨和相关人物/伏笔/时间线页面。
 4. 写正文到 `novel/05_manuscript/`。
 5. 写完后同步章节龙骨、剧情总纲、全书龙骨、时间线、人物状态、关系状态、伏笔账本、矛盾标记、索引和日志。
 6. 每完成一段连续创作、一次大规模回改或一次设定集中更新后，将 `llm-wiki` 当前结论同步为 `novel/00_project/`、`novel/01_world/`、`novel/02_characters/`、`novel/03_plot/`、`novel/07_continuity/` 中的可读摘要备份，避免这些文件长期停留在空模板状态。
@@ -145,8 +141,8 @@ ch003-spine.md
 - `docs/usage-guide.md`：从零开始使用 NovelForge-Agent 的中文手册。
 - `docs/novel-agent-plan.md`：完整方案说明。
 - `llm-wiki/wiki/book-spine.md`：全书龙骨。
-- `llm-wiki/process/outline.md`：剧情总纲。
-- `llm-wiki/process/chapters/_chapter-spine-template.md`：章节龙骨模板。
+- `llm-wiki/wiki/outline.md`：剧情总纲。
+- `novel/03_plot/chapters/_chapter-spine-template.md`：章节龙骨模板。
 - `llm-wiki/wiki/index.md`：llm-wiki 内容索引。
 - `llm-wiki/wiki/log.md`：llm-wiki 操作日志。
 

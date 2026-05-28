@@ -8,8 +8,8 @@ This release restructures the `llm-wiki` layer for long-form novel projects. Cha
 
 ### Changed
 
-- Added `llm-wiki/process/outline.md` as the plot outline between `wiki/book-spine.md` and per-chapter spines.
-- Moved chapter spines to `llm-wiki/process/chapters/`.
+- Added `llm-wiki/wiki/outline.md` as the plot outline and wiki-level overview that links to per-chapter spines.
+- Moved chapter spines to `novel/03_plot/chapters/`.
 - Added `llm-wiki/templates/` for reusable card templates.
 - Added wiki category directories for characters, locations, organizations, rules, items, scenes, and foreshadowing.
 - Reworked `llm-wiki/wiki/index.md` into a top-level index that links category master nodes instead of every concrete card.
@@ -22,5 +22,5 @@ This release restructures the `llm-wiki` layer for long-form novel projects. Cha
 
 - Root-level `README.md` remains unchanged as the repository entry point.
 - `raw/` and `novel/` keep their existing README files.
-- Existing old paths under `llm-wiki/wiki/chapters/` are replaced by `llm-wiki/process/chapters/`.
+- Existing old paths under `llm-wiki/wiki/chapters/` and `llm-wiki/process/chapters/` are replaced by `novel/03_plot/chapters/`.
 - New projects should use category master nodes under `llm-wiki/wiki/`; existing projects can migrate gradually as long as links remain clear.

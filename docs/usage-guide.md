@@ -32,7 +32,7 @@ llm-wiki/     <- 设定知识库（日常唯一检索入口）
 | `novel/` | 正文草稿、章节成稿、写作过程文件和必要备份 | 可改写 |
 | `llm-wiki/` | 设定、人物、主线、时间线、伏笔、状态和矛盾检查知识库 | 由 AI 维护 |
 
-日常写作时，AI 优先只从 `llm-wiki/` 读取资料。只有 wiki 缺失、互相矛盾或需要核对原始依据时，才回查 `raw/` 或 `novel/`。
+日常写作时，AI 优先从 `llm-wiki/` 定位资料；单章龙骨通过 `llm-wiki/wiki/outline.md` 链接到 `novel/03_plot/chapters/` 后按需读取。只有 wiki 缺失、互相矛盾、需要核对原始依据或需要核对正文时，才回查 `raw/` 或其他 `novel/` 文件。
 
 ---
 
@@ -107,7 +107,7 @@ AI 应完成：
 > **提示词**：
 > 请根据当前 `llm-wiki/`，生成第一章的章节龙骨草案。必须包含章节功能、开章状态、本章目标、核心推进、结尾变化、后续约束和待回收问题。不要写正文。
 
-AI 会读取 `llm-wiki/` 中的相关资料，生成一份龙骨草案写入 `llm-wiki/process/chapters/ch001-spine.md`。你确认或修改后再进入正文写作。
+AI 会读取 `llm-wiki/` 中的相关资料，生成一份龙骨草案写入 `novel/03_plot/chapters/ch001-spine.md`。你确认或修改后再进入正文写作。
 
 #### 步骤 5：写正文
 
@@ -132,7 +132,7 @@ AI 会读取 `llm-wiki/` 中的相关资料，生成一份龙骨草案写入 `ll
 AI 应按章节龙骨模板中的同步检查清单逐项处理：
 
 - [ ] 已更新 `book-spine.md`
-- [ ] 已更新 `process/outline.md` 或确认无需更新
+- [ ] 已更新 `llm-wiki/wiki/outline.md` 或确认无需更新
 - [ ] 已更新 `timeline.md`
 - [ ] 已更新 `character-states.md`
 - [ ] 已更新 `relationship-states.md`
@@ -241,8 +241,8 @@ AI 应按章节龙骨模板中的同步检查清单逐项处理：
 | `Claude.md` | Claude 工作流使用的项目级行为规则，规则内容应与 `AGENTS.md` 保持等价 |
 | `llm-wiki/wiki/index.md` | 内容索引，写作/查询前必读 |
 | `llm-wiki/wiki/book-spine.md` | 全书主线龙骨（压缩版） |
-| `llm-wiki/process/outline.md` | 剧情总纲，串联章节组和整体脉络 |
-| `llm-wiki/process/chapters/chXXX-spine.md` | 每章剧情龙骨 |
+| `llm-wiki/wiki/outline.md` | 剧情总纲，串联章节组和整体脉络 |
+| `novel/03_plot/chapters/chXXX-spine.md` | 每章剧情龙骨 |
 | `llm-wiki/wiki/timeline.md` | 事件时间线 |
 | `llm-wiki/wiki/character-states.md` | 人物当前状态账本 |
 | `llm-wiki/wiki/relationship-states.md` | 人物关系状态账本 |
@@ -320,7 +320,7 @@ AI：修改第 8 章正文 -> 更新所有受影响的 wiki 页面 -> 记录日�
 ```text
 你：我上次写到第 15 章，帮我回顾一下当前进度。
 
-AI：读取 book-spine.md、process/outline.md、最新章节龙骨、log.md。
+AI：读取 book-spine.md、llm-wiki/wiki/outline.md、最新章节龙骨、log.md。
     当前主线在第 X 阶段，第 15 章结尾是……，未回收伏笔有 X 条，下一步应该……
 
 你：继续写第 16 章。

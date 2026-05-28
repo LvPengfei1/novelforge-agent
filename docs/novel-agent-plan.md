@@ -8,13 +8,13 @@
 - 人物性格、经历、关系和剧情推进会不断变化，适合单独建档并持续更新。
 - 主线内容应保持压缩版，作为每次写作前的高密度上下文入口。
 - 具体写某个角色、地点或场景时，只读取相关文件，避免把所有设定一次性塞入上下文。
-- llm-wiki 作为小说资料的日常唯一入口，负责快速查找、交叉引用、矛盾检查和上下文压缩。
+- llm-wiki 作为小说资料的日常检索入口，负责快速查找、交叉引用、矛盾检查和上下文压缩；单章龙骨存放在 `novel/03_plot/chapters/`，由 `llm-wiki/wiki/outline.md` 统一关联。
 - 每一本小说都应视为一个独立项目，默认持续向后创作；只有在确有必要时才小范围回改前文，并同步检查受影响设定。
 - 每章必须维护简短剧情龙骨，用于记录开章状态、核心推进和结尾变化，防止长篇前后矛盾。
 
 需要注意的是：小说资料库不能只建目录，还要有维护规则。否则后期会出现正文推进了，但人物状态、伏笔表、时间线没有同步更新的问题。
 
-进一步说，`llm-wiki` 不能只维护几个总账表。长篇小说需要“图谱总账 + 节点页 + 流程层章节龙骨”三层结构：总账用于快速扫描，节点页用于组建上下文，章节龙骨用于承接剧情状态但不作为最终 wiki 图谱节点。人物卡、地点卡、组织卡、规则卡、重要场景卡、伏笔、时间线和状态追踪属于 wiki 图谱；正文原文仍保存在 `novel/05_manuscript/`，不进入 wiki。
+进一步说，`llm-wiki` 不能只维护几个总账表。长篇小说需要“图谱总账 + 节点页 + 小说工程层章节龙骨”三层结构：总账用于快速扫描，节点页用于组建上下文，章节龙骨用于承接剧情状态但不作为最终 wiki 图谱节点。人物卡、地点卡、组织卡、规则卡、重要场景卡、伏笔、时间线和状态追踪属于 wiki 图谱；总体大纲维护在 `llm-wiki/wiki/outline.md`，用来关联 `novel/03_plot/chapters/` 下的章节龙骨；正文原文仍保存在 `novel/05_manuscript/`，不进入 wiki。
 
 ## 推荐架构
 
@@ -33,12 +33,6 @@ E:\小说智能体
 │   ├── ingest-manifest.md
 │   ├── query-prompts.md
 │   ├── sources
-│   ├── process
-│   │   ├── 流程层.md
-│   │   ├── outline.md
-│   │   └── chapters
-│   │       ├── 章节龙骨目录.md
-│   │       └── _chapter-spine-template.md
 │   ├── templates
 │   │   ├── character-card-template.md
 │   │   ├── location-card-template.md
@@ -54,6 +48,7 @@ E:\小说智能体
 │   │   ├── foreshadowing-ledger.md
 │   │   ├── index.md
 │   │   ├── log.md
+│   │   ├── outline.md
 │   │   ├── relationship-states.md
 │   │   ├── timeline.md
 │   │   ├── characters
@@ -78,7 +73,10 @@ E:\小说智能体
     ├── 03_plot
     │   ├── mainline.md
     │   ├── branches.md
-    │   └── chapter-outline.md
+    │   ├── chapter-outline.md
+    │   └── chapters
+    │       ├── 章节龙骨目录.md
+    │       └── _chapter-spine-template.md
     ├── 04_scenes
     │   └── _scene-template.md
     ├── 05_manuscript
@@ -101,7 +99,7 @@ E:\小说智能体
 
 `novel/` 是小说工程层，保存正文草稿、章节成稿、写作过程文件和必要备份。它不是日常设定检索入口。
 
-`llm-wiki/` 是资料与设定层，保存由智能体维护的 wiki 页面、索引、日志、查询记录和矛盾检查。日常写作、查询和连续性检查只从这里读取资料。
+`llm-wiki/` 是资料与设定层，保存由智能体维护的 wiki 页面、索引、日志、查询记录和矛盾检查。日常写作、查询和连续性检查先从这里定位资料；单章龙骨通过 `llm-wiki/wiki/outline.md` 链接到 `novel/03_plot/chapters/` 后按需读取。
 
 ### 0.1 单本小说项目边界
 
@@ -116,8 +114,8 @@ E:\小说智能体
 1. `llm-wiki/wiki/index.md`
 2. `llm-wiki/wiki/log.md`，仅在需要了解最近变化时读取
 3. `llm-wiki/wiki/book-spine.md`
-4. `llm-wiki/process/outline.md`
-5. 当前章节和相邻章节龙骨（`llm-wiki/process/chapters/`）
+4. `llm-wiki/wiki/outline.md`
+5. 当前章节和相邻章节龙骨（`novel/03_plot/chapters/`）
 6. llm-wiki 中与当前任务相关的人物、地点、组织、规则、主线、伏笔和状态页面
 7. `llm-wiki/ingest-manifest.md`，仅在需要确认未摄入资料时读取
 8. `novel/05_manuscript/` 中对应章节正文，仅在续写、改写或核对原文时读取
@@ -154,11 +152,11 @@ ch001-scene-02.md
 
 ### 2.1 章节龙骨
 
-本节是方案摘要。强制规则以项目规则文件（`AGENTS.md` / `Claude.md`）和 `llm-wiki/process/chapters/_chapter-spine-template.md` 的同步检查清单为准。
+本节是方案摘要。强制规则以项目规则文件（`AGENTS.md` / `Claude.md`）和 `novel/03_plot/chapters/_chapter-spine-template.md` 的同步检查清单为准。
 
-每章必须在 `llm-wiki/process/chapters/` 下维护一个章节龙骨文件。章节龙骨是流程层文件，不进入最终 wiki 图谱索引。
+每章必须在 `novel/03_plot/chapters/` 下维护一个章节龙骨文件。章节龙骨是小说工程层文件，不进入最终 wiki 图谱索引。
 
-章节龙骨之外还必须维护 `llm-wiki/process/outline.md`。它是剧情总纲，用于串联章节龙骨、章节组功能、支线咬合和整体剧情发展脉络。
+章节龙骨之外还必须维护 `llm-wiki/wiki/outline.md`。它是剧情总纲，用于串联章节龙骨、章节组功能、支线咬合和整体剧情发展脉络。
 
 命名：
 
@@ -195,8 +193,8 @@ ch003-spine.md
 根据正文变化同步更新：
 
 - llm-wiki 主线页面：压缩主线进度。
-- 流程层剧情总纲：记录章节组功能、阶段推进和后续规划。
-- 流程层章节龙骨：记录本章核心推进和结尾变化。
+- llm-wiki 总体大纲：记录章节组功能、阶段推进和后续规划，并关联章节龙骨。
+- novel 章节龙骨：记录本章核心推进和结尾变化。
 - llm-wiki 时间线页面：时间推进和事件顺序。
 - llm-wiki 伏笔页面：新增或回收伏笔。
 - llm-wiki 人物页面：经历、关系、性格变化、当前状态。
@@ -254,9 +252,9 @@ llm-wiki 是日常资料入口。它负责：
 
 `llm-wiki/wiki/log.md` 是时间日志，只追加记录导入、查询、审查、健康检查和人工确认。它让智能体知道最近发生了什么，避免重复处理。
 
-`llm-wiki/process/outline.md` 是剧情总纲。它串联章节龙骨，保存章节组功能、阶段推进、支线咬合和后续节奏。
+`llm-wiki/wiki/outline.md` 是总体大纲。它串联章节龙骨，保存章节组功能、阶段推进、支线咬合和后续节奏，只保留总体内容和指向 `novel/03_plot/chapters/` 的链接。
 
-`llm-wiki/process/chapters/` 是章节龙骨目录。它保存每章剧情发展的最短可用骨架，是后期查找前文影响和排查矛盾的入口，但不作为最终 wiki 图谱节点。
+`novel/03_plot/chapters/` 是章节龙骨目录。它保存每章剧情发展的最短可用骨架，是后期查找前文影响和排查矛盾的入口，但不作为最终 wiki 图谱节点。
 
 日志建议使用固定前缀：
 

@@ -3,7 +3,7 @@
 ## 写作前查询
 
 ```text
-请根据 book-spine、process/outline.md 和当前/相邻章节龙骨，汇总【章节编号】所在章节组的功能、主线推进、支线咬合、必须承接的状态和本章不应提前揭示的内容。不要写正文。
+请根据 `llm-wiki/wiki/book-spine.md`、`llm-wiki/wiki/outline.md` 和 `novel/03_plot/chapters/` 中当前/相邻章节龙骨，汇总【章节编号】所在章节组的功能、主线推进、支线咬合、必须承接的状态和本章不应提前揭示的内容。不要写正文。
 ```
 
 ```text
@@ -29,7 +29,7 @@
 ```
 
 ```text
-请检查 process/outline.md 是否准确串联当前章节组：章节组功能、主线推进、支线状态和后续规划是否与 book-spine、当前/相邻章节龙骨、timeline、foreshadowing-ledger 一致。列出需要修正的条目。
+请检查 `llm-wiki/wiki/outline.md` 是否准确串联当前章节组：章节组功能、主线推进、支线状态和后续规划是否与 `book-spine.md`、`novel/03_plot/chapters/` 当前/相邻章节龙骨、`timeline.md`、`foreshadowing-ledger.md` 一致。列出需要修正的条目。
 ```
 
 ```text
@@ -47,7 +47,7 @@
 ```
 
 ```text
-请根据【章节正文或摘要】判断是否需要更新 process/outline.md：如果本章改变章节组功能、阶段推进、支线咬合或后续规划，请给出应追加或修订的剧情总纲条目。
+请根据【章节正文或摘要】判断是否需要更新 `llm-wiki/wiki/outline.md`：如果本章改变章节组功能、阶段推进、支线咬合或后续规划，请给出应追加或修订的总体大纲条目，并维护到对应章节龙骨链接。
 ```
 
 ```text

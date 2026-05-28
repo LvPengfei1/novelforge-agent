@@ -75,3 +75,17 @@
 - 影响页面：AGENTS.md、Claude.md、README.md、docs/usage-guide.md、docs/novel-agent-plan.md、llm-wiki/llm-wiki说明.md、llm-wiki/wiki/index.md、llm-wiki/wiki/wiki图谱说明.md、llm-wiki/wiki/*/中文档案主节点、llm-wiki/process/流程层.md、llm-wiki/process/chapters/章节龙骨目录.md
 - 处理结果：将 llm-wiki 内图谱层和流程层的 README 主节点全部改为中文语义文件名；`wiki/index.md` 仅链接分类主节点，具体档案卡由分类主节点继续关联；同步更新智能体模板规则。
 - 是否影响 novel/ 正文或草稿：否，当前为知识图谱结构和智能体规则更新。
+
+## [2026-05-28] update | 章节龙骨迁移至 novel
+
+- 来源：用户明确要求章节龙骨按小说工程资料管理，wiki 中只保留总体大纲内容，并由总体大纲关联章节龙骨。
+- 影响页面：AGENTS.md、Claude.md、README.md、README.en.md、docs/usage-guide.md、docs/novel-agent-plan.md、llm-wiki/llm-wiki说明.md、llm-wiki/query-prompts.md、llm-wiki/wiki/index.md、llm-wiki/wiki/outline.md、llm-wiki/wiki/wiki图谱说明.md、novel/03_plot/chapters/*、novel/03_plot/chapter-outline.md、novel/05_manuscript/README.md
+- 处理结果：将总体大纲移动为 `llm-wiki/wiki/outline.md`，将章节龙骨目录和模板移动到 `novel/03_plot/chapters/`；规定 wiki 不再逐章收录龙骨，只通过总体大纲链接章节龙骨。
+- 是否影响 novel/ 正文或草稿：否，当前为项目结构、规则和模板调整。
+
+## [2026-05-28] update | 明确 llm-wiki 检索入口口径
+
+- 来源：章节龙骨迁移到 `novel/03_plot/chapters/` 后，需要避免“只从 llm-wiki 读取资料”的绝对表述与新结构冲突。
+- 影响页面：AGENTS.md、Claude.md、README.md、README.en.md、docs/usage-guide.md、docs/novel-agent-plan.md、llm-wiki/llm-wiki说明.md、novel/00_project/brief.md
+- 处理结果：统一改为“llm-wiki 是日常设定检索和资料定位入口”；单章龙骨由 `llm-wiki/wiki/outline.md` 关联后按需读取 `novel/03_plot/chapters/`。
+- 是否影响 novel/ 正文或草稿：否，当前为项目结构和规则口径调整。

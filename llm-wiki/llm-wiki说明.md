@@ -4,7 +4,7 @@
 
 ## 定位
 
-llm-wiki 是小说资料的日常唯一入口。写作、查询、审查和连续性检查，应优先从本目录读取资料。
+llm-wiki 是小说资料的日常检索入口。写作、查询、审查和连续性检查，应优先从本目录定位资料；单章龙骨通过 `wiki/outline.md` 链接到 `../novel/03_plot/chapters/` 后按需读取。
 
 - `raw/` 保存不可改写的原始资源。
 - `novel/` 保存正文草稿、章节成稿和写作过程文件。
@@ -22,12 +22,6 @@ llm-wiki
 ├── ingest-manifest.md
 ├── query-prompts.md
 ├── sources
-├── process
-│   ├── 流程层.md
-│   ├── outline.md
-│   └── chapters
-│       ├── 章节龙骨目录.md
-│       └── _chapter-spine-template.md
 ├── templates
 │   ├── character-card-template.md
 │   ├── location-card-template.md
@@ -43,6 +37,7 @@ llm-wiki
 │   ├── foreshadowing-ledger.md
 │   ├── index.md
 │   ├── log.md
+│   ├── outline.md
 │   ├── relationship-states.md
 │   ├── timeline.md
 │   ├── characters
@@ -61,8 +56,8 @@ llm-wiki
 - `query-prompts.md`：保存常用查询问题。
 - `sources/`：如 llm-wiki 需要独立输入源，可放置复制或导出的源文件。
 - `wiki/book-spine.md`：全书主线龙骨和当前进度。
-- `process/outline.md`：剧情总纲，串联章节龙骨、章节组功能和阶段推进。
-- `process/chapters/`：每章剧情龙骨，属于流程层，不纳入最终 wiki 图谱。
+- `wiki/outline.md`：总体大纲，串联章节龙骨、章节组功能和阶段推进；只保留总体内容和章节龙骨链接。
+- `../novel/03_plot/chapters/`：每章剧情龙骨，属于小说工程层，不纳入最终 wiki 图谱。
 - `wiki/timeline.md`：事件时间线。
 - `wiki/character-states.md`：人物当前状态。
 - `wiki/relationship-states.md`：人物关系状态。
@@ -83,7 +78,7 @@ llm-wiki
 
 ## 使用流程
 
-本文件是操作摘要。强制规则以根目录项目规则文件（`AGENTS.md` / `Claude.md`）和 `process/chapters/_chapter-spine-template.md` 的同步检查清单为准。
+本文件是操作摘要。强制规则以根目录项目规则文件（`AGENTS.md` / `Claude.md`）和 `novel/03_plot/chapters/_chapter-spine-template.md` 的同步检查清单为准。
 
 ### 1. 导入前
 
@@ -94,7 +89,7 @@ llm-wiki
 1. `raw/` 中新增的原始资料。
 2. 用户当前明确补充的设定、人物、剧情或规则。
 3. `novel/05_manuscript/` 中已经产生设定变化、人物变化、伏笔或关键事件的章节。
-4. `llm-wiki/process/chapters/` 中新增或变更的章节龙骨。
+4. `novel/03_plot/chapters/` 中新增或变更的章节龙骨。
 
 正文章节不建议全部长期摄入。只有当章节包含已确定的设定变化、人物变化、伏笔或关键事件时，才摄入或摘要后摄入。
 
@@ -127,7 +122,7 @@ llm-wiki
 如果正文产生新事实：
 
 1. 更新对应章节龙骨。
-2. 更新 `book-spine.md`、`process/outline.md`、`timeline.md`、`character-states.md`、`relationship-states.md`、`foreshadowing-ledger.md`。
+2. 更新 `book-spine.md`、`wiki/outline.md`、`timeline.md`、`character-states.md`、`relationship-states.md`、`foreshadowing-ledger.md`。
 3. 如发现矛盾，更新 `contradiction-flags.md`。
 4. 更新相关 wiki 页面。
 5. 更新对应分类主节点；仅在新增分类主节点时更新 `wiki/index.md`。

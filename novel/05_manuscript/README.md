@@ -21,8 +21,8 @@ ch003.md
 章节正文写完后，必须同步更新对应章节龙骨：
 
 ```text
-llm-wiki/wiki/chapters/ch001-spine.md
-llm-wiki/wiki/chapters/ch002-spine.md
+novel/03_plot/chapters/ch001-spine.md
+novel/03_plot/chapters/ch002-spine.md
 ```
 
-没有完成章节龙骨、时间线、人物状态、关系状态、伏笔账本和矛盾标记同步，不视为该章真正完成。
+没有完成章节龙骨、`llm-wiki/wiki/outline.md` 总体大纲、时间线、人物状态、关系状态、伏笔账本和矛盾标记同步，不视为该章真正完成。

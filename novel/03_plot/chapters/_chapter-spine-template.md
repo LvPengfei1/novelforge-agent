@@ -57,7 +57,7 @@
 ## 同步检查
 
 - [ ] 已更新 `book-spine.md`
-- [ ] 已更新 `process/outline.md` 或确认无需更新
+- [ ] 已更新 `llm-wiki/wiki/outline.md` 或确认无需更新
 - [ ] 已更新 `timeline.md`
 - [ ] 已更新 `character-states.md`
 - [ ] 已更新 `relationship-states.md`
