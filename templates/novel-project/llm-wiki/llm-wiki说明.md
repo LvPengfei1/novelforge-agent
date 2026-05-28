@@ -4,16 +4,21 @@
 
 ## 定位
 
-llm-wiki 是小说资料的日常检索入口。写作、查询、审查和连续性检查，应优先从本目录定位资料；单章龙骨通过 `wiki/outline.md` 链接到 `../novel/03_plot/chapters/` 后按需读取。
+llm-wiki 是小说资料的日常检索和定位入口。写作、查询、审查和连续性检查，应优先从本目录定位资料；单章龙骨通过 `wiki/outline.md` 链接到 `../novel/03_plot/chapters/` 后按需读取。
 
 - `raw/` 保存不可改写的原始资源。
 - `novel/` 保存正文草稿、章节成稿和写作过程文件。
 - `llm-wiki/` 保存 LLM 维护的 wiki、摄入清单、查询提示、日志和矛盾处理记录。
+- `AIGC_DETECTION_PRINCIPLES.md` 保存 AIGC 文本检测原理，是原创性与文本质量检查依据。
 - `docs/aigc-quality-control.md` 保存 AIGC 检测手段研究摘要和原创性质量控制规则。
 
 所有长期使用的设定、人物、主线、时间线、伏笔和状态，都必须进入 `llm-wiki/`。如果 wiki 页面缺失或矛盾，再回查 `raw/` 或 `novel/`，并把有效结论补回 wiki。
 
 `llm-wiki` 应按关联型知识库维护。总账型文件用于快速扫描，节点型小文件用于快速组建上下文。正文原文不进入 wiki；正文产生的人物、地点、组织、规则、物品、重要场景、伏笔、时间线、关系和状态变化必须抽取后进入 wiki。
+
+## 证据等级
+
+wiki 页面中的重要设定、研究结论和推断应标注证据等级。具体等级和写前研究触发条件以 `AGENTS.md` / `Claude.md` 为准。
 
 ## 推荐目录
 
@@ -126,12 +131,13 @@ llm-wiki
 2. 更新 `book-spine.md`、`wiki/outline.md`、`timeline.md`、`character-states.md`、`relationship-states.md`、`foreshadowing-ledger.md`。
 3. 如发现矛盾，更新 `contradiction-flags.md`。
 4. 更新相关 wiki 页面。
-5. 更新对应分类主节点；仅在新增分类主节点时更新 `wiki/index.md`。
+5. 更新对应分类主节点；如索引入口或摘要变化，再更新 `wiki/index.md`。
 6. 将变更追加到 `wiki/log.md`。
 7. 将处理结果写入 `llm-wiki/logs/`。
 8. 如正文或章节规划受影响，再更新 `novel/`。
 9. 执行节点缺口检查：触发建卡门槛的内容若只存在于 `index.md` 摘要、分类主节点摘要、总账表或 `novel/` 模板中，不算同步完成。
-10. 执行原创性与 AIGC 痕迹质量检查：排查模板化句式、空泛套话、人物表达同质、场景缺少具体细节、参考资料拼贴和同义词替换式洗稿。
+10. 执行关联文件强制同步检查；无变化的关联文件说明“已检查，无需更新”。
+11. 正文初稿完成后，依据 `AIGC_DETECTION_PRINCIPLES.md` 执行原创性与文本质量检查；不合格内容必须修改复查。
 
 章节正文写完但章节龙骨、剧情总纲和连续性账本未同步，不算真正完成该章。
 

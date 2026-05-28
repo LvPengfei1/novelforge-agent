@@ -2,6 +2,8 @@
 
 本文件只追加记录 llm-wiki 的重要操作。
 
+说明：历史条目记录当时的目录和规则状态，不代表当前最新规则。当前规则以根目录 `AGENTS.md` / `Claude.md`、最新日志条目和当前实际目录为准。
+
 推荐格式：
 
 ```markdown
@@ -103,3 +105,52 @@
 - 影响页面：AGENTS.md、Claude.md、docs/aigc-quality-control.md、docs/usage-guide.md、docs/novel-agent-plan.md、llm-wiki/query-prompts.md、llm-wiki/llm-wiki说明.md
 - 处理结果：统一改为“人物文字表达差异”或“人物表达同质”，明确指小说中的对白、内心独白、叙述视角、句式和信息表达方式。
 - 是否影响 novel/ 正文或草稿：否，当前为规则措辞修正。
+
+## [2026-05-28] update | 增加 AIGC 文本检测原理审核依据
+
+- 来源：用户要求在智能体配置中增加依据 `AIGC_DETECTION_PRINCIPLES.md` 的内容审核。
+- 影响页面：AIGC_DETECTION_PRINCIPLES.md、AGENTS.md、Claude.md、README.md、README.en.md、docs/aigc-quality-control.md、docs/usage-guide.md、docs/novel-agent-plan.md、llm-wiki/llm-wiki说明.md、llm-wiki/query-prompts.md、novel/03_plot/chapters/*
+- 处理结果：将 `AIGC_DETECTION_PRINCIPLES.md` 设为原创性与 AIGC 痕迹质量检查依据；若正文呈现过度平滑可预测、句式机械、重复模式明显、人物表达同质、场景缺少具体细节、片段风格断裂、参考资料拼贴等特征，应标记为文本质量风险并按小说质量目标修正。
+- 是否影响 novel/ 正文或草稿：否，当前为规则、文档和检查清单更新。
+
+## [2026-05-28] update | 明确 AIGC 检测原理作为文本优化方向
+
+- 来源：用户澄清目的不是对抗 AIGC 检测，而是把 AIGC 文本检测中的观察维度作为文本优化方向。
+- 影响页面：AIGC_DETECTION_PRINCIPLES.md、AGENTS.md、Claude.md、README.md、README.en.md、docs/aigc-quality-control.md、docs/usage-guide.md、docs/novel-agent-plan.md、llm-wiki/llm-wiki说明.md、llm-wiki/query-prompts.md、novel/03_plot/chapters/*、novel/05_manuscript/README.md、CHANGELOG.md
+- 处理结果：统一改为“原创性与文本质量检查”；凡正文明显呈现过度平滑、句式机械、重复模式、人物表达同质、场景缺少具体细节、片段风格断裂、参考资料拼贴或同义替换式洗稿等特征，均判定为质量不合格，必须修改后复查。
+- 是否影响 novel/ 正文或草稿：否，当前为规则、文档和检查清单更新。
+
+## [2026-05-28] update | 调整文本质量检查顺序
+
+- 来源：用户要求检测步骤应在原正文内容完成后，再进行审核、检测和修改。
+- 影响页面：AGENTS.md、Claude.md、AIGC_DETECTION_PRINCIPLES.md、README.md、README.en.md、docs/aigc-quality-control.md、docs/usage-guide.md、docs/novel-agent-plan.md、llm-wiki/llm-wiki说明.md、llm-wiki/query-prompts.md、novel/03_plot/chapters/*、novel/05_manuscript/README.md、CHANGELOG.md
+- 处理结果：明确流程顺序为“正文初稿完成 -> 原创性与文本质量检查 -> 修改 -> 复查 -> 章节同步”，禁止在初稿未完成时为了检查项反复中断正文生成。
+- 是否影响 novel/ 正文或草稿：否，当前为规则、文档和检查清单更新。
+
+## [2026-05-28] update | 增加关联文件强制同步规则
+
+- 来源：用户反馈文章更新后部分关联内容不会一起更新，需要增加更明确的同步规则。
+- 影响页面：AGENTS.md、Claude.md、README.md、README.en.md、docs/usage-guide.md、docs/novel-agent-plan.md、llm-wiki/llm-wiki说明.md、llm-wiki/query-prompts.md、novel/03_plot/chapters/*、novel/05_manuscript/README.md、CHANGELOG.md
+- 处理结果：新增“关联文件强制同步”矩阵，明确修改正文、章节龙骨、人物卡、世界设定、伏笔、时间线、剧情总纲、全书龙骨、wiki 页面和 novel 镜像摘要后的必检关联文件；无需更新的关联文件也必须说明“已检查，无需更新”。
+- 是否影响 novel/ 正文或草稿：否，当前为规则、文档和检查清单更新。
+
+## [2026-05-28] audit | 全面审查规则重复与吸收写作工作流优点
+
+- 来源：用户要求全面审查智能体文档，排查重复、啰嗦、矛盾设置，并吸收公众号写作 skill 中适合小说项目的优点；读者反馈回流暂不加入。
+- 影响页面：AGENTS.md、Claude.md、README.md、README.en.md、docs/usage-guide.md、docs/novel-agent-plan.md、llm-wiki/llm-wiki说明.md、llm-wiki/wiki/wiki图谱说明.md、llm-wiki/wiki/index.md、llm-wiki/query-prompts.md、llm-wiki/templates/*、novel/03_plot/chapters/_chapter-spine-template.md、CHANGELOG.md
+- 处理结果：新增小说阶段流程、证据等级与写前研究触发规则、避坑清单；统一 `llm-wiki` 为日常资料检索和定位入口；修正索引更新口径为“索引入口或摘要变化时更新”；为节点模板补充证据等级和来源依据字段；历史日志增加说明，避免旧路径被误认为当前规则。
+- 是否影响 novel/ 正文或草稿：否，当前为规则、文档和模板更新。
+
+## [2026-05-28] audit | 精简重复规则说明
+
+- 来源：用户要求全面排查不必要声明，列出并精简重复、啰嗦设置。
+- 影响页面：AGENTS.md、Claude.md、docs/aigc-quality-control.md、docs/usage-guide.md、docs/novel-agent-plan.md、llm-wiki/llm-wiki说明.md、llm-wiki/query-prompts.md、novel/03_plot/chapters/章节龙骨目录.md、novel/05_manuscript/README.md、llm-wiki/wiki/log.md
+- 处理结果：保留 `AGENTS.md` / `Claude.md` 作为强规则源头；将使用手册、方案和 wiki 说明中的重复流程、AIGC 细则和同步矩阵改为短说明或引用；删除主动规则中的公众号、读者反馈回流等外部写作场景声明。
+- 是否影响 novel/ 正文或草稿：否，当前为规则与说明文档精简。
+
+## [2026-05-28] architecture | 区分框架仓库与小说实例
+
+- 来源：用户反馈正式开写后，小说正文和设定会污染框架仓库，导致智能体优化不易单独提交。
+- 影响页面：AGENTS.md、Claude.md、README.md、README.en.md、CHANGELOG.md、docs/project-instance-guide.md、docs/usage-guide.md、docs/novel-agent-plan.md、templates/README.md、projects/README.md、.gitignore、templates/novel-project/*
+- 处理结果：将空小说项目骨架迁入 `templates/novel-project/`；新增被 Git 忽略的 `projects/` 本地实例目录；明确真实小说应复制模板到 `projects/<novel-slug>/` 或仓库外部目录，框架仓库只提交规则、文档和空模板。
+- 是否影响 novel/ 正文或草稿：否，当前为仓库结构和模板位置调整。

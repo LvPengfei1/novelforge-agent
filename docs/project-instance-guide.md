@@ -1,0 +1,33 @@
+# 框架仓库与小说实例分离
+
+NovelForge-Agent 仓库只维护智能体规则、文档和空项目模板。真实小说项目应作为独立实例运行，避免正文、设定和私有资料污染框架仓库提交。
+
+## 推荐结构
+
+```text
+novelforge-agent/
+├── AGENTS.md
+├── Claude.md
+├── docs/
+├── templates/
+│   └── novel-project/
+│       ├── raw/
+│       ├── novel/
+│       └── llm-wiki/
+└── projects/
+    └── <novel-slug>/   # 本地实例，默认被 Git 忽略
+```
+
+## 新建小说实例
+
+将 `templates/novel-project/` 复制为 `projects/<novel-slug>/`，并把根目录的 `AGENTS.md`、`Claude.md`、`AIGC_DETECTION_PRINCIPLES.md` 放入该小说实例根目录。
+
+之后在 `projects/<novel-slug>/` 中创作正文、维护设定和运行 llm-wiki。
+
+## 提交规则
+
+- 框架优化：提交仓库根目录的 `AGENTS.md`、`Claude.md`、`docs/`、`templates/`、`README` 等文件。
+- 小说创作：默认留在 `projects/<novel-slug>/`，不随框架提交。
+- 模板优化：只修改 `templates/novel-project/` 中的空模板和说明，不写入具体小说正文或私有设定。
+
+如果某本小说也需要版本管理，应在小说实例目录内初始化独立 Git 仓库，或放到仓库外独立管理。
