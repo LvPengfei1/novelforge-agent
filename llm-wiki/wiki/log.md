@@ -96,3 +96,10 @@
 - 影响页面：AGENTS.md、Claude.md、README.md、README.en.md、docs/aigc-quality-control.md、docs/usage-guide.md、docs/novel-agent-plan.md、llm-wiki/llm-wiki说明.md、novel/03_plot/chapters/_chapter-spine-template.md、CHANGELOG.md
 - 处理结果：新增 AIGC 检测手段研究摘要；将“反 AIGC 检测”改为合规的原创性与 AIGC 痕迹质量控制，明确不以绕过或欺骗检测器为目标；章节完成清单新增原创性与 AIGC 痕迹质量检查。
 - 是否影响 novel/ 正文或草稿：否，当前为规则、文档和检查清单更新。
+
+## [2026-05-28] update | 修正人物表达表述
+
+- 来源：用户指出原表述容易被理解为语音或影视概念，不适合小说规则。
+- 影响页面：AGENTS.md、Claude.md、docs/aigc-quality-control.md、docs/usage-guide.md、docs/novel-agent-plan.md、llm-wiki/query-prompts.md、llm-wiki/llm-wiki说明.md
+- 处理结果：统一改为“人物文字表达差异”或“人物表达同质”，明确指小说中的对白、内心独白、叙述视角、句式和信息表达方式。
+- 是否影响 novel/ 正文或草稿：否，当前为规则措辞修正。
