@@ -25,4 +25,4 @@ novel/03_plot/chapters/ch001-spine.md
 novel/03_plot/chapters/ch002-spine.md
 ```
 
-没有完成章节龙骨、`llm-wiki/wiki/outline.md` 总体大纲、时间线、人物状态、关系状态、伏笔账本和矛盾标记同步，不视为该章真正完成。
+没有完成章节龙骨、`llm-wiki/wiki/outline.md` 总体大纲、时间线、人物状态、关系状态、伏笔账本、矛盾标记同步，以及原创性与 AIGC 痕迹质量检查，不视为该章真正完成。

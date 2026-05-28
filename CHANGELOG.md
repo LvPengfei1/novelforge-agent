@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Added `docs/aigc-quality-control.md` to summarize common AIGC detection approaches and define originality-focused quality controls.
+- Added originality and AIGC-trace quality checks to chapter completion rules, chapter spine template, and usage guide.
+
+### Changed
+
+- Clarified that AIGC-related rules are for reducing formulaic, generic, and homogenized prose, not for bypassing or deceiving detection tools.
+
 ## 1.0.1 - 2026-05-28
 
 ### Summary

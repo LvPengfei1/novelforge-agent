@@ -89,3 +89,10 @@
 - 影响页面：AGENTS.md、Claude.md、README.md、README.en.md、docs/usage-guide.md、docs/novel-agent-plan.md、llm-wiki/llm-wiki说明.md、novel/00_project/brief.md
 - 处理结果：统一改为“llm-wiki 是日常设定检索和资料定位入口”；单章龙骨由 `llm-wiki/wiki/outline.md` 关联后按需读取 `novel/03_plot/chapters/`。
 - 是否影响 novel/ 正文或草稿：否，当前为项目结构和规则口径调整。
+
+## [2026-05-28] update | AIGC 痕迹质量控制
+
+- 来源：用户要求研究 AIGC 检测手段，并增加相关要求。
+- 影响页面：AGENTS.md、Claude.md、README.md、README.en.md、docs/aigc-quality-control.md、docs/usage-guide.md、docs/novel-agent-plan.md、llm-wiki/llm-wiki说明.md、novel/03_plot/chapters/_chapter-spine-template.md、CHANGELOG.md
+- 处理结果：新增 AIGC 检测手段研究摘要；将“反 AIGC 检测”改为合规的原创性与 AIGC 痕迹质量控制，明确不以绕过或欺骗检测器为目标；章节完成清单新增原创性与 AIGC 痕迹质量检查。
+- 是否影响 novel/ 正文或草稿：否，当前为规则、文档和检查清单更新。

@@ -8,6 +8,7 @@ NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用
 
 - 英文版 README：[README.en.md](README.en.md)
 - 使用手册：[docs/usage-guide.md](docs/usage-guide.md)
+- AIGC 质量控制：[docs/aigc-quality-control.md](docs/aigc-quality-control.md)
 - Codex 项目规则：[AGENTS.md](AGENTS.md)
 - Claude 项目规则：[Claude.md](Claude.md)
 - 完整方案：[docs/novel-agent-plan.md](docs/novel-agent-plan.md)
@@ -19,6 +20,7 @@ NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用
 - 让每一本小说作为独立项目持续创作。
 - 用 `llm-wiki` 管理所有长期使用的设定、人物、主线、时间线、伏笔和状态。
 - 用“剧情总纲”串联章节组功能和整体发展脉络，用“章节龙骨”记录每章开章状态、核心推进和结尾变化，减少长篇前后矛盾。
+- 增加原创性与 AIGC 痕迹质量检查，降低模板化、空泛化和同质化写作问题。
 - 将原始资料、正文草稿和可检索知识库分层管理。
 - 让 AI 写作、续写、审查和设定维护都有稳定规则可依。
 

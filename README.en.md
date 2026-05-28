@@ -8,6 +8,7 @@ This repository is not a finished novel. It is a project structure and behavior-
 
 - Chinese README: [README.md](README.md)
 - Chinese usage manual: [docs/usage-guide.md](docs/usage-guide.md)
+- AIGC quality control notes: [docs/aigc-quality-control.md](docs/aigc-quality-control.md)
 - Codex project rules: [AGENTS.md](AGENTS.md)
 - Claude project rules: [Claude.md](Claude.md)
 - Full framework plan: [docs/novel-agent-plan.md](docs/novel-agent-plan.md)
@@ -20,6 +21,7 @@ This repository is not a finished novel. It is a project structure and behavior-
 - Keep every important story fact in files instead of chat memory.
 - Use `llm-wiki` to manage settings, characters, plot, timeline, foreshadowing, and current states.
 - Maintain a plot outline and short chapter spines to connect chapter groups, stage progression, and per-chapter state changes.
+- Add originality and AIGC-trace quality checks to reduce formulaic, generic, and homogenized prose.
 - Keep raw sources, manuscripts, and searchable knowledge pages separated.
 - Give AI agents stable rules for drafting, rewriting, reviewing, and maintaining story knowledge.
 
