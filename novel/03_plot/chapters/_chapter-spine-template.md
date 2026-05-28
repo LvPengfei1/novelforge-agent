@@ -57,11 +57,13 @@
 ## 同步检查
 
 - [ ] 已更新 `book-spine.md`
+- [ ] 已更新 `llm-wiki/wiki/outline.md` 或确认无需更新
 - [ ] 已更新 `timeline.md`
 - [ ] 已更新 `character-states.md`
 - [ ] 已更新 `relationship-states.md`
 - [ ] 已更新 `foreshadowing-ledger.md`
 - [ ] 已更新 `contradiction-flags.md` 或确认无矛盾
-- [ ] 已更新 `index.md`
+- [ ] 已执行节点缺口检查
+- [ ] 已新建或更新触发建卡门槛的人物、地点、组织、规则、物品、重要场景和伏笔节点页
+- [ ] 已更新对应分类主节点；仅在新增分类主节点时更新 `index.md`
 - [ ] 已追加 `log.md`
-
