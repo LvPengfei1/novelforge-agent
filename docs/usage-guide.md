@@ -90,7 +90,7 @@ AI 应完成：
 1. 将原始资料保存或登记到 `raw/`。
 2. 提取人物、地点、组织、规则、事件、伏笔、主题和写作限制。
 3. 创建或更新 `llm-wiki/wiki/` 下的相关页面。
-4. 更新 `llm-wiki/wiki/index.md`。
+4. 更新对应分类主节点；仅在新增分类主节点时更新 `llm-wiki/wiki/index.md`。
 5. 追加 `llm-wiki/wiki/log.md`。
 6. 更新 `llm-wiki/ingest-manifest.md`。
 
@@ -107,7 +107,7 @@ AI 应完成：
 > **提示词**：
 > 请根据当前 `llm-wiki/`，生成第一章的章节龙骨草案。必须包含章节功能、开章状态、本章目标、核心推进、结尾变化、后续约束和待回收问题。不要写正文。
 
-AI 会读取 `llm-wiki/` 中的相关资料，生成一份龙骨草案写入 `llm-wiki/wiki/chapters/ch001-spine.md`。你确认或修改后再进入正文写作。
+AI 会读取 `llm-wiki/` 中的相关资料，生成一份龙骨草案写入 `llm-wiki/process/chapters/ch001-spine.md`。你确认或修改后再进入正文写作。
 
 #### 步骤 5：写正文
 
@@ -127,17 +127,20 @@ AI 会读取 `llm-wiki/` 中的相关资料，生成一份龙骨草案写入 `ll
 正文写完后，AI 必须同步更新相关页面：
 
 > **提示词**：
-> 第一章正文已完成。请同步更新：章节龙骨、全书龙骨、时间线、人物状态、关系状态、伏笔账本、矛盾标记、索引和日志。
+> 第一章正文已完成。请同步更新：章节龙骨、剧情总纲、全书龙骨、时间线、人物状态、关系状态、伏笔账本、矛盾标记、索引和日志。
 
 AI 应按章节龙骨模板中的同步检查清单逐项处理：
 
 - [ ] 已更新 `book-spine.md`
+- [ ] 已更新 `process/outline.md` 或确认无需更新
 - [ ] 已更新 `timeline.md`
 - [ ] 已更新 `character-states.md`
 - [ ] 已更新 `relationship-states.md`
 - [ ] 已更新 `foreshadowing-ledger.md`
 - [ ] 已更新 `contradiction-flags.md` 或确认无矛盾
-- [ ] 已更新 `index.md`
+- [ ] 已执行节点缺口检查
+- [ ] 已新建或更新触发建卡门槛的人物、地点、组织、规则、物品、重要场景和伏笔节点页
+- [ ] 已更新对应分类主节点；仅在新增分类主节点时更新 `index.md`
 - [ ] 已追加 `log.md`
 
 注意：章节正文写完但同步检查未完成，不算真正完成该章。
@@ -199,7 +202,7 @@ AI 应按章节龙骨模板中的同步检查清单逐项处理：
 | 场景 | 提示词 |
 |------|--------|
 | 完整同步 | 第 X 章正文已完成，请同步更新所有 `llm-wiki/` 页面。 |
-| 局部同步 | 第 X 章新增了伏笔【内容】，请更新 `foreshadowing-ledger.md` 和 `index.md`。 |
+| 局部同步 | 第 X 章新增了伏笔【内容】，请更新 `foreshadowing-ledger.md` 和伏笔分类主节点。 |
 | 检查同步状态 | 请检查第 X 章的章节龙骨同步检查清单，看哪些项目还没完成。 |
 
 ### 连续性检查
@@ -238,7 +241,8 @@ AI 应按章节龙骨模板中的同步检查清单逐项处理：
 | `Claude.md` | Claude 工作流使用的项目级行为规则，规则内容应与 `AGENTS.md` 保持等价 |
 | `llm-wiki/wiki/index.md` | 内容索引，写作/查询前必读 |
 | `llm-wiki/wiki/book-spine.md` | 全书主线龙骨（压缩版） |
-| `llm-wiki/wiki/chapters/chXXX-spine.md` | 每章剧情龙骨 |
+| `llm-wiki/process/outline.md` | 剧情总纲，串联章节组和整体脉络 |
+| `llm-wiki/process/chapters/chXXX-spine.md` | 每章剧情龙骨 |
 | `llm-wiki/wiki/timeline.md` | 事件时间线 |
 | `llm-wiki/wiki/character-states.md` | 人物当前状态账本 |
 | `llm-wiki/wiki/relationship-states.md` | 人物关系状态账本 |
@@ -316,7 +320,7 @@ AI：修改第 8 章正文 -> 更新所有受影响的 wiki 页面 -> 记录日�
 ```text
 你：我上次写到第 15 章，帮我回顾一下当前进度。
 
-AI：读取 book-spine.md、最新章节龙骨、log.md。
+AI：读取 book-spine.md、process/outline.md、最新章节龙骨、log.md。
     当前主线在第 X 阶段，第 15 章结尾是……，未回收伏笔有 X 条，下一步应该……
 
 你：继续写第 16 章。

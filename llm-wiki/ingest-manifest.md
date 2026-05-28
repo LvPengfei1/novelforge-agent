@@ -13,7 +13,8 @@
 | 状态 | 资料或页面 | 处理原因 | 涉及条目 | 最近处理 |
 | --- | --- | --- | --- | --- |
 | pending | raw/ | 原始资源层 | 用户资料、外部来源 | 按需导入 |
-| pending | llm-wiki/wiki/chapters/ | 章节龙骨 | 章节推进、结尾变化、后续约束 | 按章维护 |
+| pending | llm-wiki/process/outline.md | 剧情总纲 | 章节组功能、阶段推进、支线咬合、后续规划 | 按章节组维护 |
+| pending | llm-wiki/process/chapters/ | 章节龙骨 | 章节推进、结尾变化、后续约束 | 按章维护 |
 | ingested | llm-wiki/wiki/book-spine.md | 初始化全书龙骨 | 主线、阶段、当前进度 | 2026-05-27 初始化 |
 | ingested | llm-wiki/wiki/timeline.md | 初始化时间线账本 | 事件顺序 | 2026-05-27 初始化 |
 | ingested | llm-wiki/wiki/character-states.md | 初始化人物状态账本 | 人物状态 | 2026-05-27 初始化 |

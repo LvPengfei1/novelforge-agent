@@ -1,6 +1,6 @@
 # NovelForge-Agent
 
-NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用 `llm-wiki` 作为小说资料的日常唯一入口，通过章节龙骨、全书龙骨、人物状态账本、伏笔账本和矛盾标记，帮助作者在持续创作中保持主线、人物、时间线和设定一致。
+NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用 `llm-wiki` 作为小说资料的日常唯一入口，通过全书龙骨、剧情总纲、章节龙骨、人物状态账本、伏笔账本和矛盾标记，帮助作者在持续创作中保持主线、人物、时间线和设定一致。
 
 本项目不是具体小说正文，而是一套可复用的小说写作项目结构和智能体行为规则。
 
@@ -11,12 +11,14 @@ NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用
 - Codex 项目规则：[AGENTS.md](AGENTS.md)
 - Claude 项目规则：[Claude.md](Claude.md)
 - 完整方案：[docs/novel-agent-plan.md](docs/novel-agent-plan.md)
+- 修改记录：[CHANGELOG.md](CHANGELOG.md)
+- 1.0.1 发布摘要：[docs/releases/v1.0.1.md](docs/releases/v1.0.1.md)
 
 ## 核心目标
 
 - 让每一本小说作为独立项目持续创作。
 - 用 `llm-wiki` 管理所有长期使用的设定、人物、主线、时间线、伏笔和状态。
-- 用“章节龙骨”记录每章开章状态、核心推进和结尾变化，减少长篇前后矛盾。
+- 用“剧情总纲”串联章节组功能和整体发展脉络，用“章节龙骨”记录每章开章状态、核心推进和结尾变化，减少长篇前后矛盾。
 - 将原始资料、正文草稿和可检索知识库分层管理。
 - 让 AI 写作、续写、审查和设定维护都有稳定规则可依。
 
@@ -46,9 +48,23 @@ NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用
 │   ├── 07_continuity
 │   └── 08_archive
 └── llm-wiki
-    ├── README.md
+    ├── llm-wiki说明.md
     ├── ingest-manifest.md
     ├── query-prompts.md
+    ├── process
+    │   ├── 流程层.md
+    │   ├── outline.md
+    │   └── chapters
+    │       ├── 章节龙骨目录.md
+    │       └── _chapter-spine-template.md
+    ├── templates
+    │   ├── character-card-template.md
+    │   ├── location-card-template.md
+    │   ├── organization-card-template.md
+    │   ├── rule-card-template.md
+    │   ├── item-card-template.md
+    │   ├── scene-card-template.md
+    │   └── foreshadowing-node-template.md
     ├── logs
     ├── sources
     └── wiki
@@ -60,8 +76,13 @@ NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用
         ├── contradiction-flags.md
         ├── index.md
         ├── log.md
-        └── chapters
-            └── _chapter-spine-template.md
+        ├── characters
+        ├── locations
+        ├── organizations
+        ├── rules
+        ├── items
+        ├── scenes
+        └── foreshadowing
 ```
 
 ## 三层资料模型
@@ -78,9 +99,11 @@ NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用
 
 资料与设定层。保存由智能体维护的 wiki 页面、索引、日志、查询记录和矛盾检查结果。日常写作、查询、审查和连续性检查都优先从这里读取资料。
 
+其中 `llm-wiki/wiki/` 是最终图谱节点层；`llm-wiki/process/outline.md` 是剧情总纲，用于串联章节龙骨和整体发展脉络；`llm-wiki/process/chapters/` 保存单章龙骨。
+
 ## 章节龙骨机制
 
-每章必须在 `llm-wiki/wiki/chapters/` 下维护一个章节龙骨文件，例如：
+每章必须在 `llm-wiki/process/chapters/` 下维护一个章节龙骨文件，例如：
 
 ```text
 ch001-spine.md
@@ -98,15 +121,21 @@ ch003-spine.md
 - 后续约束
 - 待回收问题
 
-章节正文写完但章节龙骨和连续性账本未同步，不算真正完成该章。
+章节正文写完但剧情总纲、章节龙骨和连续性账本未同步，不算真正完成该章。
+
+章节还必须完成字数验收：默认约 3000 字，单章正文不得低于 2500 字，不得高于 4000 字。统计默认按连载平台“正文字数”口径，不计章节标题，正文去除空白字符后统计；如目标平台后台给出正文字数，以后台显示为准。剧情节点过长时，应拆为同名章节的上下、中下、上中下，或使用（1）（2）（3）（4）等编号。
+
+`llm-wiki` 应按关联型知识库维护：正文原文不进 wiki，但世界设定、人物卡、地点卡、组织卡、规则卡、重要场景卡、伏笔、时间线、关系和状态追踪都应进入 wiki。人物、地点、组织、规则、物品、重要场景或伏笔达到复用门槛时，必须建立独立节点页；不能只停留在 `index.md` 摘要、总账表或 `novel/` 模板中。
 
 ## 推荐工作流
 
 1. 将原始资料放入 `raw/`。
 2. 将需要长期检索、交叉引用和防矛盾的内容整理进 `llm-wiki/`。
-3. 写作前读取 `llm-wiki/wiki/index.md`、`book-spine.md`、当前章节龙骨和相关人物/伏笔/时间线页面。
+3. 写作前读取 `llm-wiki/wiki/index.md`、`book-spine.md`、`process/outline.md`、当前章节龙骨和相关人物/伏笔/时间线页面。
 4. 写正文到 `novel/05_manuscript/`。
-5. 写完后同步章节龙骨、全书龙骨、时间线、人物状态、关系状态、伏笔账本、矛盾标记、索引和日志。
+5. 写完后同步章节龙骨、剧情总纲、全书龙骨、时间线、人物状态、关系状态、伏笔账本、矛盾标记、索引和日志。
+6. 每完成一段连续创作、一次大规模回改或一次设定集中更新后，将 `llm-wiki` 当前结论同步为 `novel/00_project/`、`novel/01_world/`、`novel/02_characters/`、`novel/03_plot/`、`novel/07_continuity/` 中的可读摘要备份，避免这些文件长期停留在空模板状态。
+7. 执行节点缺口检查，确认触发建卡门槛的人物、地点、组织、规则、物品、重要场景和伏笔已建立或更新独立 wiki 页面。
 
 ## 关键文件
 
@@ -116,7 +145,8 @@ ch003-spine.md
 - `docs/usage-guide.md`：从零开始使用 NovelForge-Agent 的中文手册。
 - `docs/novel-agent-plan.md`：完整方案说明。
 - `llm-wiki/wiki/book-spine.md`：全书龙骨。
-- `llm-wiki/wiki/chapters/_chapter-spine-template.md`：章节龙骨模板。
+- `llm-wiki/process/outline.md`：剧情总纲。
+- `llm-wiki/process/chapters/_chapter-spine-template.md`：章节龙骨模板。
 - `llm-wiki/wiki/index.md`：llm-wiki 内容索引。
 - `llm-wiki/wiki/log.md`：llm-wiki 操作日志。
 

@@ -3,6 +3,10 @@
 ## 写作前查询
 
 ```text
+请根据 book-spine、process/outline.md 和当前/相邻章节龙骨，汇总【章节编号】所在章节组的功能、主线推进、支线咬合、必须承接的状态和本章不应提前揭示的内容。不要写正文。
+```
+
+```text
 请根据当前 llm-wiki，生成【章节编号】的章节龙骨草案。必须包含章节功能、开章状态、本章目标、核心推进、结尾变化、后续约束和待回收问题。不要写正文。
 ```
 
@@ -25,6 +29,10 @@
 ```
 
 ```text
+请检查 process/outline.md 是否准确串联当前章节组：章节组功能、主线推进、支线状态和后续规划是否与 book-spine、当前/相邻章节龙骨、timeline、foreshadowing-ledger 一致。列出需要修正的条目。
+```
+
+```text
 请检查【章节/场景名称】涉及的人物状态、时间线、地点、道具、信息差和伏笔是否存在矛盾。输出冲突条目、相关 wiki 页面、可能需要回查的 raw/novel 位置和建议处理方式。
 ```
 
@@ -35,7 +43,15 @@
 ## 摄入后审查
 
 ```text
-请根据【章节正文或摘要】更新对应章节龙骨，并列出需要同步到 book-spine、timeline、character-states、relationship-states、foreshadowing-ledger、contradiction-flags 和 index 的项目。
+请根据【章节正文或摘要】更新对应章节龙骨，并列出需要同步到 book-spine、timeline、character-states、relationship-states、foreshadowing-ledger、contradiction-flags 和对应分类主节点的项目；index 只在新增分类主节点时更新。
+```
+
+```text
+请根据【章节正文或摘要】判断是否需要更新 process/outline.md：如果本章改变章节组功能、阶段推进、支线咬合或后续规划，请给出应追加或修订的剧情总纲条目。
+```
+
+```text
+请根据【章节正文或摘要】执行节点缺口检查：列出本章新增或实质改变的人物、地点、组织、规则、物品、重要场景和伏笔；判断哪些达到建卡门槛；给出需要新建或更新的 wiki 节点页路径。正文原文不要进入 wiki。
 ```
 
 ```text

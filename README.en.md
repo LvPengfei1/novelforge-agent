@@ -1,6 +1,6 @@
 # NovelForge-Agent
 
-NovelForge-Agent is a reusable agent framework for long-form novel writing. It uses `llm-wiki` as the daily knowledge entry point for story facts, settings, characters, timelines, foreshadowing, and continuity checks.
+NovelForge-Agent is a reusable agent framework for long-form novel writing. It uses `llm-wiki` as the daily knowledge entry point for story facts, settings, characters, plot outline, chapter spines, timelines, foreshadowing, and continuity checks.
 
 This repository is not a finished novel. It is a project structure and behavior-rule set for AI-assisted fiction writing.
 
@@ -11,13 +11,15 @@ This repository is not a finished novel. It is a project structure and behavior-
 - Codex project rules: [AGENTS.md](AGENTS.md)
 - Claude project rules: [Claude.md](Claude.md)
 - Full framework plan: [docs/novel-agent-plan.md](docs/novel-agent-plan.md)
+- Changelog: [CHANGELOG.md](CHANGELOG.md)
+- 1.0.1 release notes: [docs/releases/v1.0.1.md](docs/releases/v1.0.1.md)
 
 ## Goals
 
 - Treat each novel as an independent long-running project.
 - Keep every important story fact in files instead of chat memory.
 - Use `llm-wiki` to manage settings, characters, plot, timeline, foreshadowing, and current states.
-- Maintain a short chapter spine for every chapter to prevent long-range continuity drift.
+- Maintain a plot outline and short chapter spines to connect chapter groups, stage progression, and per-chapter state changes.
 - Keep raw sources, manuscripts, and searchable knowledge pages separated.
 - Give AI agents stable rules for drafting, rewriting, reviewing, and maintaining story knowledge.
 
@@ -47,9 +49,23 @@ This repository is not a finished novel. It is a project structure and behavior-
 │   ├── 07_continuity
 │   └── 08_archive
 └── llm-wiki
-    ├── README.md
+    ├── llm-wiki说明.md
     ├── ingest-manifest.md
     ├── query-prompts.md
+    ├── process
+    │   ├── 流程层.md
+    │   ├── outline.md
+    │   └── chapters
+    │       ├── 章节龙骨目录.md
+    │       └── _chapter-spine-template.md
+    ├── templates
+    │   ├── character-card-template.md
+    │   ├── location-card-template.md
+    │   ├── organization-card-template.md
+    │   ├── rule-card-template.md
+    │   ├── item-card-template.md
+    │   ├── scene-card-template.md
+    │   └── foreshadowing-node-template.md
     ├── logs
     ├── sources
     └── wiki
@@ -61,8 +77,13 @@ This repository is not a finished novel. It is a project structure and behavior-
         ├── contradiction-flags.md
         ├── index.md
         ├── log.md
-        └── chapters
-            └── _chapter-spine-template.md
+        ├── characters
+        ├── locations
+        ├── organizations
+        ├── rules
+        ├── items
+        ├── scenes
+        └── foreshadowing
 ```
 
 ## Three-Layer Model
@@ -79,9 +100,11 @@ Novel engineering layer. Store manuscript drafts, finished chapters, writing pro
 
 Knowledge and setting layer. Store AI-maintained wiki pages, indexes, logs, query notes, continuity ledgers, and contradiction checks here. Normal writing, querying, reviewing, and continuity work should start from this layer.
 
+`llm-wiki/wiki/` stores final graph nodes. `llm-wiki/process/outline.md` stores the plot outline that connects chapter groups and stage progression. `llm-wiki/process/chapters/` stores per-chapter spines.
+
 ## Chapter Spine Workflow
 
-Every chapter should have a chapter spine under `llm-wiki/wiki/chapters/`, for example:
+Every chapter should have a chapter spine under `llm-wiki/process/chapters/`, for example:
 
 ```text
 ch001-spine.md
@@ -99,15 +122,20 @@ A chapter spine records only the high-density facts needed for continuity:
 - future constraints
 - unresolved items
 
-A chapter is not considered complete until the manuscript and the related `llm-wiki` pages are synchronized.
+A chapter is not considered complete until the manuscript, plot outline, chapter spine, continuity ledgers, and related `llm-wiki` pages are synchronized.
+
+Default chapter length is about 3,000 Chinese characters. A normal chapter should not be below 2,500 or above 4,000 main-text characters unless the exception is recorded in the chapter spine and log.
+
+`llm-wiki` should be maintained as a linked knowledge base: manuscript text does not enter the wiki, but reusable characters, locations, organizations, rules, items, important scenes, foreshadowing, timelines, relationships, and states should become wiki nodes when they reach the card-creation threshold.
 
 ## Recommended Workflow
 
 1. Put original materials into `raw/`.
 2. Ingest long-term story facts into `llm-wiki/`.
-3. Before writing, read `llm-wiki/wiki/index.md`, `book-spine.md`, the current chapter spine, and related character, timeline, and foreshadowing pages.
+3. Before writing, read `llm-wiki/wiki/index.md`, `book-spine.md`, `process/outline.md`, the current chapter spine, and related character, timeline, and foreshadowing pages.
 4. Write the manuscript in `novel/05_manuscript/`.
-5. After writing, update the chapter spine, book spine, timeline, character states, relationship states, foreshadowing ledger, contradiction flags, index, and log.
+5. After writing, update the chapter spine, plot outline, book spine, timeline, character states, relationship states, foreshadowing ledger, contradiction flags, index, and log.
+6. Run a node-gap check: reusable characters, locations, organizations, rules, items, important scenes, and foreshadowing should not remain only in index summaries or templates.
 
 ## Agent Rule Files
 

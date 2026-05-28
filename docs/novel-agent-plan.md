@@ -14,6 +14,8 @@
 
 需要注意的是：小说资料库不能只建目录，还要有维护规则。否则后期会出现正文推进了，但人物状态、伏笔表、时间线没有同步更新的问题。
 
+进一步说，`llm-wiki` 不能只维护几个总账表。长篇小说需要“图谱总账 + 节点页 + 流程层章节龙骨”三层结构：总账用于快速扫描，节点页用于组建上下文，章节龙骨用于承接剧情状态但不作为最终 wiki 图谱节点。人物卡、地点卡、组织卡、规则卡、重要场景卡、伏笔、时间线和状态追踪属于 wiki 图谱；正文原文仍保存在 `novel/05_manuscript/`，不进入 wiki。
+
 ## 推荐架构
 
 ```text
@@ -27,10 +29,24 @@ E:\小说智能体
 │   ├── imports
 │   └── notes
 ├── llm-wiki
-│   ├── README.md
+│   ├── llm-wiki说明.md
 │   ├── ingest-manifest.md
 │   ├── query-prompts.md
 │   ├── sources
+│   ├── process
+│   │   ├── 流程层.md
+│   │   ├── outline.md
+│   │   └── chapters
+│   │       ├── 章节龙骨目录.md
+│   │       └── _chapter-spine-template.md
+│   ├── templates
+│   │   ├── character-card-template.md
+│   │   ├── location-card-template.md
+│   │   ├── organization-card-template.md
+│   │   ├── rule-card-template.md
+│   │   ├── item-card-template.md
+│   │   ├── scene-card-template.md
+│   │   └── foreshadowing-node-template.md
 │   ├── wiki
 │   │   ├── book-spine.md
 │   │   ├── character-states.md
@@ -40,9 +56,13 @@ E:\小说智能体
 │   │   ├── log.md
 │   │   ├── relationship-states.md
 │   │   ├── timeline.md
-│   │   └── chapters
-│   │       ├── README.md
-│   │       └── _chapter-spine-template.md
+│   │   ├── characters
+│   │   ├── locations
+│   │   ├── organizations
+│   │   ├── rules
+│   │   ├── items
+│   │   ├── scenes
+│   │   └── foreshadowing
 │   └── logs
 └── novel
     ├── 00_project
@@ -96,10 +116,11 @@ E:\小说智能体
 1. `llm-wiki/wiki/index.md`
 2. `llm-wiki/wiki/log.md`，仅在需要了解最近变化时读取
 3. `llm-wiki/wiki/book-spine.md`
-4. 当前章节和相邻章节龙骨
-5. llm-wiki 中与当前任务相关的人物、地点、组织、规则、主线、伏笔和状态页面
-6. `llm-wiki/ingest-manifest.md`，仅在需要确认未摄入资料时读取
-7. `novel/05_manuscript/` 中对应章节正文，仅在续写、改写或核对原文时读取
+4. `llm-wiki/process/outline.md`
+5. 当前章节和相邻章节龙骨（`llm-wiki/process/chapters/`）
+6. llm-wiki 中与当前任务相关的人物、地点、组织、规则、主线、伏笔和状态页面
+7. `llm-wiki/ingest-manifest.md`，仅在需要确认未摄入资料时读取
+8. `novel/05_manuscript/` 中对应章节正文，仅在续写、改写或核对原文时读取
 
 然后压缩成当前写作上下文：
 
@@ -133,9 +154,11 @@ ch001-scene-02.md
 
 ### 2.1 章节龙骨
 
-本节是方案摘要。强制规则以项目规则文件（`AGENTS.md` / `Claude.md`）和 `llm-wiki/wiki/chapters/_chapter-spine-template.md` 的同步检查清单为准。
+本节是方案摘要。强制规则以项目规则文件（`AGENTS.md` / `Claude.md`）和 `llm-wiki/process/chapters/_chapter-spine-template.md` 的同步检查清单为准。
 
-每章必须在 `llm-wiki/wiki/chapters/` 下维护一个章节龙骨文件。
+每章必须在 `llm-wiki/process/chapters/` 下维护一个章节龙骨文件。章节龙骨是流程层文件，不进入最终 wiki 图谱索引。
+
+章节龙骨之外还必须维护 `llm-wiki/process/outline.md`。它是剧情总纲，用于串联章节龙骨、章节组功能、支线咬合和整体剧情发展脉络。
 
 命名：
 
@@ -157,21 +180,39 @@ ch003-spine.md
 
 写正文前先建立章节龙骨草案；写正文后按实际内容修正。章节龙骨建议 300-800 字，复杂章节最多 1200 字。
 
-章节完成标准：正文已写入或更新，并完成章节龙骨模板中的同步检查清单。
+章节字数验收：
+
+- 默认单章正文约 3000 字。
+- 字数统计默认按连载平台“正文字数”口径：不计章节标题，正文去除空白字符后统计；如目标平台后台给出正文字数，以后台显示为准，并在日志中注明口径。
+- 单章正文不得低于 2500 字，不得高于 4000 字；确需例外时，必须在章节龙骨和日志中说明。
+- 单个剧情节点超过 4000 字时，应拆为同名章节的上下、中下、上中下，或使用（1）（2）（3）（4）等编号。
+- 章节完成检查必须包含字数统计；不满足区间的章节应先扩写、压缩或拆章。
+
+章节完成标准：正文已写入或更新、正文字数已验收，并完成章节龙骨模板中的同步检查清单。
 
 ### 3. 写作完成后
 
 根据正文变化同步更新：
 
 - llm-wiki 主线页面：压缩主线进度。
-- llm-wiki 章节龙骨：记录本章核心推进和结尾变化。
+- 流程层剧情总纲：记录章节组功能、阶段推进和后续规划。
+- 流程层章节龙骨：记录本章核心推进和结尾变化。
 - llm-wiki 时间线页面：时间推进和事件顺序。
 - llm-wiki 伏笔页面：新增或回收伏笔。
 - llm-wiki 人物页面：经历、关系、性格变化、当前状态。
 - llm-wiki 世界设定页面：新地点、新组织、新规则、新术语。
-- `llm-wiki/wiki/index.md`：新增或更新页面索引。
+- 对应分类主节点：新增或更新具体档案卡链接；`llm-wiki/wiki/index.md` 只维护分类主节点入口。
 - `llm-wiki/wiki/log.md`：记录本次变更。
 - `llm-wiki/logs/`：记录矛盾、合并建议和人工处理结果。
+
+还必须执行节点缺口检查：
+
+- 人物出场超过 2 章、推动关键剧情、与主角关系持续变化、有秘密/动机/阵营/语言习惯/禁止写法/未回收伏笔，或后续需要复用其性格和状态时，必须建立人物卡。
+- 地点多章出现、具有空间结构、路线、入口、禁忌、机关、历史或危险规则，或后续行动需要复用其方位和限制时，必须建立地点卡。
+- 组织、规则、术语、物品只要影响人物选择、冲突成本、世界运行、修行体系、主线支线或后续口径，就必须建立独立节点页。
+- 场景卡只给复杂或可复用场景建立，例如多方人物同场、空间调度复杂、存在规则限制、关键证据链或重要伏笔的场景。
+- 触发建卡门槛的内容若只存在于 `index.md` 摘要、总账表或 `novel/` 模板中，不算同步完成。
+- `novel/` 镜像摘要：每完成一段连续创作、一次大规模回改或一次设定集中更新后，把 llm-wiki 当前结论同步到 `novel/00_project/`、`novel/01_world/`、`novel/02_characters/`、`novel/03_plot/`、`novel/07_continuity/` 的对应文件，避免这些文件长期停留在空模板状态。
 
 ### 3.1 前文回改
 
@@ -209,11 +250,13 @@ llm-wiki 是日常资料入口。它负责：
 
 ### 5. llm-wiki 日志和索引
 
-`llm-wiki/wiki/index.md` 是内容索引，按人物、地点、组织、规则、剧情、伏笔、来源等分类记录 wiki 页面和一句话摘要。写作或查询前先读它。
+`llm-wiki/wiki/index.md` 是顶层索引，只关联分类主节点和少量全局入口。具体人物、地点、组织、规则、物品、场景和伏笔页面应写入对应分类主节点。写作或查询前先读顶层索引，再进入相关分类主节点。
 
 `llm-wiki/wiki/log.md` 是时间日志，只追加记录导入、查询、审查、健康检查和人工确认。它让智能体知道最近发生了什么，避免重复处理。
 
-`llm-wiki/wiki/chapters/` 是章节龙骨目录。它保存每章剧情发展的最短可用骨架，是后期查找前文影响和排查矛盾的入口。
+`llm-wiki/process/outline.md` 是剧情总纲。它串联章节龙骨，保存章节组功能、阶段推进、支线咬合和后续节奏。
+
+`llm-wiki/process/chapters/` 是章节龙骨目录。它保存每章剧情发展的最短可用骨架，是后期查找前文影响和排查矛盾的入口，但不作为最终 wiki 图谱节点。
 
 日志建议使用固定前缀：
 
@@ -227,12 +270,16 @@ llm-wiki 是日常资料入口。它负责：
 
 - 所有设定必须落文件，不依赖对话记忆。
 - 日常资料查询只走 llm-wiki；源文件只用于证据回查或正文核对。
+- 必须维护剧情总纲，用于串联章节龙骨和整体发展脉络。
 - 每章必须维护章节龙骨；没有完成章后状态同步，不算真正完成该章。
+- 每章必须完成字数验收；默认约 3000 字，低于 2500 字或高于 4000 字都需要扩写、压缩、拆章或登记例外。
+- `novel/` 中的项目、世界、人物、剧情和连续性文件是 llm-wiki 的可读镜像备份，不能长期停留在空模板状态。
 - `raw/` 中原始资源不得被改写。
 - 不相关设定不进上下文。
 - 主线文件要短，必须可快速读取。
 - 人物文件可以细，但每个人单独存放。
 - 人物变化要记录“变化原因”，不能只写变化结果。
+- 节点页应小而明确；总账用于扫描，不能替代人物卡、地点卡、组织卡、规则卡、物品卡、重要场景卡或伏笔节点页。
 - 废弃设定归档，不直接删除。
 - 正文是最终产出，资料库只服务正文。
 
@@ -249,4 +296,4 @@ llm-wiki 是日常资料入口。它负责：
 
 ## 当前本机状态
 
-本项目已经建立 llm-wiki 目录和规则；即使没有专用工具，也可以由 Codex 按 `AGENTS.md`，或由 Claude 按 `Claude.md`，结合 `llm-wiki/README.md`、`llm-wiki/wiki/index.md` 和 `llm-wiki/wiki/log.md` 维护这套知识库。
+本项目已经建立 llm-wiki 目录和规则；即使没有专用工具，也可以由 Codex 按 `AGENTS.md`，或由 Claude 按 `Claude.md`，结合 `llm-wiki/llm-wiki说明.md`、`llm-wiki/wiki/index.md` 和 `llm-wiki/wiki/log.md` 维护这套知识库。
