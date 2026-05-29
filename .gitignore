@@ -1,16 +1,19 @@
-# Local novel instances and private writing work.
-/projects/*
-!/projects/README.md
+# 小说内容（不入 git）
+/作品/*
+!/作品/README.md
 
-# Prevent accidental root-level novel work from entering the framework repo.
+# 防止根目录误写入小说内容
 /raw/
 /novel/
 /llm-wiki/
+/原始资料/
+/小说工程/
 
-# Local environment and editor noise.
+# 本地环境和编辑器临时文件
 .env
 .env.*
 *.local
 *.local.*
 Thumbs.db
 .DS_Store
+.obsidian/

@@ -1,10 +1,10 @@
 # NovelForge-Agent
 
-NovelForge-Agent is a reusable agent framework for long-form novel writing. It uses `llm-wiki` as the daily knowledge entry point for story facts, settings, characters, the overall plot outline, timelines, foreshadowing, and continuity checks. Per-chapter spines live under `novel/03_plot/chapters/` and are reached through `llm-wiki/wiki/outline.md`.
+NovelForge-Agent is a reusable agent framework for long-form novel writing. It uses `llm-wiki` as the daily knowledge entry point for story facts, settings, characters, the overall plot outline, timelines, foreshadowing, and continuity checks. Per-chapter spines live under `小说工程/03_剧情/章节/` and are reached through `llm-wiki/wiki/outline.md`.
 
 This repository is not a finished novel. It is a project structure and behavior-rule set for AI-assisted fiction writing.
 
-Real novels should live under `projects/<novel-slug>/` or outside this repository. The repository root is for framework rules, documentation, and empty templates, so manuscript work does not pollute framework commits.
+Real novels should live under `作品/<novel-slug>/` or outside this repository. The repository root is for framework rules, documentation, and empty templates, so manuscript work does not pollute framework commits.
 
 ## Documentation
 
@@ -45,32 +45,32 @@ Real novels should live under `projects/<novel-slug>/` or outside this repositor
 │   ├── novel-agent-plan.md
 │   ├── project-instance-guide.md
 │   └── usage-guide.md
-├── templates
-│   └── novel-project
-│       ├── raw
-│       ├── novel
+├── 模板
+│   └── 小说项目
+│       ├── 原始资料
+│       ├── 小说工程
 │       └── llm-wiki
-└── projects
+└── 作品
     └── README.md
 ```
 
-`templates/novel-project/` is the blank project template. `projects/` is for local novel instances and is ignored by Git by default.
+`模板/小说项目/` is the blank project template. `作品/` is for local novel instances and is ignored by Git by default.
 
 ## Create a Novel Instance
 
-Copy `templates/novel-project/` to `projects/<novel-slug>/`, then place root-level `AGENTS.md`, `Claude.md`, and `AIGC_DETECTION_PRINCIPLES.md` in that novel instance root.
+Copy `模板/小说项目/` to `作品/<novel-slug>/`, then place root-level `AGENTS.md`, `Claude.md`, and `AIGC_DETECTION_PRINCIPLES.md` in that novel instance root.
 
-Write the novel inside `projects/<novel-slug>/`. Framework improvements should still be committed from the repository root.
+Write the novel inside `作品/<novel-slug>/`. Framework improvements should still be committed from the repository root.
 
 ## Three-Layer Model
 
 The following paths are relative to a copied novel instance.
 
-### `raw/`
+### `原始资料/`
 
 Original source layer. Store user-provided materials, clipped web pages, reference articles, images, and imported notes here. This layer is read-only.
 
-### `novel/`
+### `小说工程/`
 
 Novel engineering layer. Store manuscript drafts, finished chapters, chapter spines, writing process files, and backups here. It is not the daily source for story-setting lookup; chapter spines are read when the wiki outline points to them.
 
@@ -78,11 +78,11 @@ Novel engineering layer. Store manuscript drafts, finished chapters, chapter spi
 
 Knowledge and setting layer. Store AI-maintained wiki pages, indexes, logs, query notes, continuity ledgers, and contradiction checks here. Normal writing, querying, reviewing, and continuity work should start from this layer.
 
-`llm-wiki/wiki/` stores final graph nodes. `llm-wiki/wiki/outline.md` stores the plot outline that connects chapter groups and stage progression. `novel/03_plot/chapters/` stores per-chapter spines.
+`llm-wiki/wiki/` stores final graph nodes. `llm-wiki/wiki/outline.md` stores the plot outline that connects chapter groups and stage progression. `小说工程/03_剧情/章节/` stores per-chapter spines.
 
 ## Chapter Spine Workflow
 
-Every chapter should have a chapter spine under `novel/03_plot/chapters/`, for example:
+Every chapter should have a chapter spine under `小说工程/03_剧情/章节/`, for example:
 
 ```text
 ch001-spine.md
@@ -108,10 +108,10 @@ Default chapter length is about 3,000 Chinese characters. A normal chapter shoul
 
 ## Recommended Workflow
 
-1. Put original materials into `raw/`.
+1. Put original materials into `原始资料/`.
 2. Ingest long-term story facts into `llm-wiki/`.
 3. Before writing, read `llm-wiki/wiki/index.md`, `book-spine.md`, `llm-wiki/wiki/outline.md`, the current chapter spine, and related character, timeline, and foreshadowing pages.
-4. Write the manuscript in `novel/05_manuscript/`.
+4. Write the manuscript in `小说工程/05_正文/`.
 5. After writing, use the chapter-spine checklist for prose-quality review, associated-file synchronization, node-gap checks, and logging.
 
 ## Agent Rule Files

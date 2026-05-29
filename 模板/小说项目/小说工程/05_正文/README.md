@@ -21,8 +21,8 @@ ch003.md
 章节正文写完后，必须同步更新对应章节龙骨：
 
 ```text
-novel/03_plot/chapters/ch001-spine.md
-novel/03_plot/chapters/ch002-spine.md
+小说工程/03_剧情/章节/ch001-spine.md
+小说工程/03_剧情/章节/ch002-spine.md
 ```
 
 正文初稿、原创性与文本质量检查、章节龙骨和章后同步清单全部完成后，才视为该章完成。同步细则以章节龙骨模板和项目规则为准。

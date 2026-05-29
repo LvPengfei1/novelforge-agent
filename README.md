@@ -1,10 +1,10 @@
 # NovelForge-Agent
 
-NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用 `llm-wiki` 作为小说资料的日常检索入口，通过全书龙骨、总体大纲、章节龙骨、人物状态账本、伏笔账本和矛盾标记，帮助作者在持续创作中保持主线、人物、时间线和设定一致。单章龙骨存放在 `novel/03_plot/chapters/`，由 `llm-wiki/wiki/outline.md` 统一关联。
+NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用 `llm-wiki` 作为小说资料的日常检索入口，通过全书龙骨、总体大纲、章节龙骨、人物状态账本、伏笔账本和矛盾标记，帮助作者在持续创作中保持主线、人物、时间线和设定一致。单章龙骨存放在 `小说工程/03_剧情/章节/`，由 `llm-wiki/wiki/outline.md` 统一关联。
 
 本项目不是具体小说正文，而是一套可复用的小说写作项目结构和智能体行为规则。
 
-真实小说请放在 `projects/<novel-slug>/` 或仓库外部目录；本仓库根目录只提交智能体框架、文档和空项目模板。这样开始创作后，正文和私有设定不会影响框架优化提交。
+真实小说请放在 `作品/<novel-slug>/` 或仓库外部目录；本仓库根目录只提交智能体框架、文档和空项目模板。这样开始创作后，正文和私有设定不会影响框架优化提交。
 
 ## 文档入口
 
@@ -43,32 +43,32 @@ NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用
 │   ├── novel-agent-plan.md
 │   ├── project-instance-guide.md
 │   └── usage-guide.md
-├── templates
-│   └── novel-project
-│       ├── raw
-│       ├── novel
+├── 模板
+│   └── 小说项目
+│       ├── 原始资料
+│       ├── 小说工程
 │       └── llm-wiki
-└── projects
+└── 作品
     └── README.md
 ```
 
-`templates/novel-project/` 是空小说项目模板；`projects/` 用于本地小说实例，默认被 Git 忽略。
+`模板/小说项目/` 是空小说项目模板；`作品/` 用于本地小说实例，默认被 Git 忽略。
 
 ## 新建小说实例
 
-将 `templates/novel-project/` 复制为 `projects/<novel-slug>/`，并把根目录的 `AGENTS.md`、`Claude.md`、`AIGC_DETECTION_PRINCIPLES.md` 放入该小说实例根目录。
+将 `模板/小说项目/` 复制为 `作品/<novel-slug>/`，并把根目录的 `AGENTS.md`、`Claude.md`、`AIGC_DETECTION_PRINCIPLES.md` 放入该小说实例根目录。
 
-之后在 `projects/<novel-slug>/` 中写正文和维护设定。框架优化仍在仓库根目录提交。
+之后在 `作品/<novel-slug>/` 中写正文和维护设定。框架优化仍在仓库根目录提交。
 
 ## 三层资料模型
 
 以下目录均指复制后的小说实例内部路径。
 
-### `raw/`
+### `原始资料/`
 
 原始资源层。保存用户提供的资料、网页剪藏、参考文章、图片和导入材料。该目录只读，不改写。
 
-### `novel/`
+### `小说工程/`
 
 小说工程层。保存正文草稿、章节成稿、写作过程文件和必要备份。它不是日常设定检索入口。
 
@@ -76,11 +76,11 @@ NovelForge-Agent 是一个面向长篇小说创作的智能体框架。它使用
 
 资料与设定层。保存由智能体维护的 wiki 页面、索引、日志、查询记录和矛盾检查结果。日常写作、查询、审查和连续性检查都优先从这里读取资料。
 
-其中 `llm-wiki/wiki/` 是最终图谱节点层；`llm-wiki/wiki/outline.md` 是剧情总纲，用于串联章节龙骨和整体发展脉络；`novel/03_plot/chapters/` 保存单章龙骨。
+其中 `llm-wiki/wiki/` 是最终图谱节点层；`llm-wiki/wiki/outline.md` 是剧情总纲，用于串联章节龙骨和整体发展脉络；`小说工程/03_剧情/章节/` 保存单章龙骨。
 
 ## 章节龙骨机制
 
-每章必须在 `novel/03_plot/chapters/` 下维护一个章节龙骨文件，例如：
+每章必须在 `小说工程/03_剧情/章节/` 下维护一个章节龙骨文件，例如：
 
 ```text
 ch001-spine.md
@@ -102,16 +102,16 @@ ch003-spine.md
 
 章节还必须完成字数验收：默认约 3000 字，单章正文不得低于 2500 字，不得高于 4000 字。统计默认按连载平台“正文字数”口径，不计章节标题，正文去除空白字符后统计；如目标平台后台给出正文字数，以后台显示为准。剧情节点过长时，应拆为同名章节的上下、中下、上中下，或使用（1）（2）（3）（4）等编号。
 
-`llm-wiki` 应按关联型知识库维护：正文原文不进 wiki，但世界设定、人物卡、地点卡、组织卡、规则卡、重要场景卡、伏笔、时间线、关系和状态追踪都应进入 wiki。人物、地点、组织、规则、物品、重要场景或伏笔达到复用门槛时，必须建立独立节点页；不能只停留在 `index.md` 摘要、总账表或 `novel/` 模板中。
+`llm-wiki` 应按关联型知识库维护：正文原文不进 wiki，但世界设定、人物卡、地点卡、组织卡、规则卡、重要场景卡、伏笔、时间线、关系和状态追踪都应进入 wiki。人物、地点、组织、规则、物品、重要场景或伏笔达到复用门槛时，必须建立独立节点页；不能只停留在 `index.md` 摘要、总账表或 `小说工程/` 模板中。
 
 ## 推荐工作流
 
-1. 将原始资料放入 `raw/`。
+1. 将原始资料放入 `原始资料/`。
 2. 将需要长期检索、交叉引用和防矛盾的内容整理进 `llm-wiki/`。
 3. 写作前读取 `llm-wiki/wiki/index.md`、`book-spine.md`、`llm-wiki/wiki/outline.md`、当前章节龙骨和相关人物/伏笔/时间线页面。
-4. 写正文到 `novel/05_manuscript/`。
+4. 写正文到 `小说工程/05_正文/`。
 5. 写完后按章节龙骨模板执行质量检查、关联文件同步、节点缺口检查和日志记录。
-6. 每完成一段连续创作、一次大规模回改或一次设定集中更新后，将 `llm-wiki` 当前结论同步为 `novel/` 下对应摘要备份。
+6. 每完成一段连续创作、一次大规模回改或一次设定集中更新后，将 `llm-wiki` 当前结论同步为 `小说工程/` 下对应摘要备份。
 
 ## 关键文件
 
@@ -121,10 +121,10 @@ ch003-spine.md
 - `docs/usage-guide.md`：从零开始使用 NovelForge-Agent 的中文手册。
 - `docs/project-instance-guide.md`：框架仓库与小说实例分离说明。
 - `docs/novel-agent-plan.md`：完整方案说明。
-- `templates/novel-project/`：可复制的小说项目模板。
-- `templates/novel-project/llm-wiki/wiki/book-spine.md`：全书龙骨模板。
-- `templates/novel-project/llm-wiki/wiki/outline.md`：剧情总纲模板。
-- `templates/novel-project/novel/03_plot/chapters/_chapter-spine-template.md`：章节龙骨模板。
+- `模板/小说项目/`：可复制的小说项目模板。
+- `模板/小说项目/llm-wiki/wiki/book-spine.md`：全书龙骨模板。
+- `模板/小说项目/llm-wiki/wiki/outline.md`：剧情总纲模板。
+- `模板/小说项目/小说工程/03_剧情/章节/_chapter-spine-template.md`：章节龙骨模板。
 
 ## 许可证
 

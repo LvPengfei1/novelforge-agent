@@ -1,0 +1,11 @@
+写第四章。先读取资料再动笔。
+
+读取顺序：
+
+llm-wiki/wiki/index.md
+llm-wiki/wiki/book-spine.md（当前进度）
+llm-wiki/wiki/outline.md（剧情总纲，确认第四章在哪个章节组、必须推进什么）
+novel/03_plot/chapters/ch003-spine.md（上一章龙骨，确认开章状态）
+llm-wiki/wiki/character-states.md（人物当前状态）
+llm-wiki/wiki/foreshadowing-ledger.md（伏笔当前状态）
+读完资料后，先建立 ch004 章节龙骨草案给我确认，确认后再写正文。写完后按规则同步更新所有关联文件。

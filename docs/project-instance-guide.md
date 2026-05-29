@@ -9,25 +9,37 @@ novelforge-agent/
 ├── AGENTS.md
 ├── Claude.md
 ├── docs/
-├── templates/
-│   └── novel-project/
-│       ├── raw/
-│       ├── novel/
+├── 模板/
+│   └── 小说项目/
+│       ├── 原始资料/
+│       ├── 小说工程/
 │       └── llm-wiki/
-└── projects/
+└── 作品/
     └── <novel-slug>/   # 本地实例，默认被 Git 忽略
 ```
 
 ## 新建小说实例
 
-将 `templates/novel-project/` 复制为 `projects/<novel-slug>/`，并把根目录的 `AGENTS.md`、`Claude.md`、`AIGC_DETECTION_PRINCIPLES.md` 放入该小说实例根目录。
+将 `模板/小说项目/` 复制为 `作品/<novel-slug>/`，并把根目录的 `AGENTS.md`、`Claude.md`、`AIGC_DETECTION_PRINCIPLES.md` 放入该小说实例根目录。
 
-之后在 `projects/<novel-slug>/` 中创作正文、维护设定和运行 llm-wiki。
+之后在 `作品/<novel-slug>/` 中创作正文、维护设定和运行 llm-wiki。
 
 ## 提交规则
 
-- 框架优化：提交仓库根目录的 `AGENTS.md`、`Claude.md`、`docs/`、`templates/`、`README` 等文件。
-- 小说创作：默认留在 `projects/<novel-slug>/`，不随框架提交。
-- 模板优化：只修改 `templates/novel-project/` 中的空模板和说明，不写入具体小说正文或私有设定。
+- 框架优化：提交仓库根目录的 `AGENTS.md`、`Claude.md`、`docs/`、`模板/`、`README` 等文件。
+- 小说创作：默认留在 `作品/<novel-slug>/`，不随框架提交。
+- 模板优化：只修改 `模板/小说项目/` 中的空模板和说明，不写入具体小说正文或私有设定。
 
 如果某本小说也需要版本管理，应在小说实例目录内初始化独立 Git 仓库，或放到仓库外独立管理。
+
+## 目录路径对照
+
+本文档中的目录路径使用中文标识：
+
+| 中文路径 | 英文原名 | 说明 |
+|---------|---------|------|
+| `模板/` | `templates/` | 框架模板目录 |
+| `模板/小说项目/` | `templates/novel-project/` | 空小说项目模板 |
+| `作品/` | `projects/` | 本地小说实例目录 |
+| `原始资料/` | `raw/` | 原始资源层（只读） |
+| `小说工程/` | `novel/` | 小说工程层 |
