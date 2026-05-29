@@ -11,6 +11,7 @@
 - llm-wiki 作为小说资料的日常检索入口，负责快速查找、交叉引用、矛盾检查和上下文压缩；单章龙骨存放在 `novel/03_plot/chapters/`，由 `llm-wiki/wiki/outline.md` 统一关联。
 - 每一本小说都应视为一个独立项目，默认持续向后创作；只有在确有必要时才小范围回改前文，并同步检查受影响设定。
 - 每章必须维护简短剧情龙骨，用于记录开章状态、核心推进和结尾变化，防止长篇前后矛盾。
+- `AIGC_DETECTION_PRINCIPLES.md` 只作为初稿后的原创性与文本质量检查依据。
 
 需要注意的是：小说资料库不能只建目录，还要有维护规则。否则后期会出现正文推进了，但人物状态、伏笔表、时间线没有同步更新的问题。
 
@@ -23,73 +24,20 @@ E:\小说智能体
 ├── AGENTS.md
 ├── Claude.md
 ├── docs
-│   └── novel-agent-plan.md
-├── raw
-│   ├── assets
-│   ├── imports
-│   └── notes
-├── llm-wiki
-│   ├── llm-wiki说明.md
-│   ├── ingest-manifest.md
-│   ├── query-prompts.md
-│   ├── sources
-│   ├── templates
-│   │   ├── character-card-template.md
-│   │   ├── location-card-template.md
-│   │   ├── organization-card-template.md
-│   │   ├── rule-card-template.md
-│   │   ├── item-card-template.md
-│   │   ├── scene-card-template.md
-│   │   └── foreshadowing-node-template.md
-│   ├── wiki
-│   │   ├── book-spine.md
-│   │   ├── character-states.md
-│   │   ├── contradiction-flags.md
-│   │   ├── foreshadowing-ledger.md
-│   │   ├── index.md
-│   │   ├── log.md
-│   │   ├── outline.md
-│   │   ├── relationship-states.md
-│   │   ├── timeline.md
-│   │   ├── characters
-│   │   ├── locations
-│   │   ├── organizations
-│   │   ├── rules
-│   │   ├── items
-│   │   ├── scenes
-│   │   └── foreshadowing
-│   └── logs
-└── novel
-    ├── 00_project
-    │   └── brief.md
-    ├── 01_world
-    │   ├── locations.md
-    │   ├── organizations.md
-    │   ├── rules.md
-    │   └── terminology.md
-    ├── 02_characters
-    │   ├── _character-template.md
-    │   └── relationships.md
-    ├── 03_plot
-    │   ├── mainline.md
-    │   ├── branches.md
-    │   ├── chapter-outline.md
-    │   └── chapters
-    │       ├── 章节龙骨目录.md
-    │       └── _chapter-spine-template.md
-    ├── 04_scenes
-    │   └── _scene-template.md
-    ├── 05_manuscript
-    │   └── README.md
-    ├── 06_research
-    │   └── README.md
-    ├── 07_continuity
-    │   ├── timeline.md
-    │   ├── foreshadowing.md
-    │   └── state-tracker.md
-    └── 08_archive
-        └── README.md
+│   ├── novel-agent-plan.md
+│   ├── project-instance-guide.md
+│   ├── usage-guide.md
+│   └── aigc-quality-control.md
+├── templates
+│   └── novel-project
+│       ├── raw
+│       ├── novel
+│       └── llm-wiki
+└── projects
+    └── README.md
 ```
+
+框架仓库只提交规则、文档和 `templates/novel-project/` 空模板。真实小说实例复制到 `projects/<novel-slug>/` 或仓库外部目录，默认不随框架提交。
 
 ## 核心使用流程
 
@@ -103,7 +51,7 @@ E:\小说智能体
 
 ### 0.1 单本小说项目边界
 
-每一本小说都是一个独立项目。当前目录只服务当前这一本小说。
+每一本小说都是一个独立项目。框架仓库不是小说实例；当前小说实例应位于 `projects/<novel-slug>/` 或仓库外部目录。
 
 如果未来同一工作区需要管理多本小说，应为每本小说建立独立目录，分别维护 `raw/`、`novel/`、`llm-wiki/` 和项目规则。不同小说不能共用人物库、设定库和主线索引，除非用户明确要求共享宇宙或系列化设定。
 
@@ -178,6 +126,8 @@ ch003-spine.md
 
 写正文前先建立章节龙骨草案；写正文后按实际内容修正。章节龙骨建议 300-800 字，复杂章节最多 1200 字。
 
+默认阶段流程为：项目简报 -> 资料摄入 -> 章节龙骨 -> 正文初稿 -> 编辑检查 -> 修改复查 -> 章后同步 -> 健康检查。证据等级和写前研究触发条件以 `AGENTS.md` / `Claude.md` 为准。
+
 章节字数验收：
 
 - 默认单章正文约 3000 字。
@@ -188,20 +138,11 @@ ch003-spine.md
 
 章节完成标准：正文已写入或更新、正文字数已验收，并完成章节龙骨模板中的同步检查清单。
 
+章节完成前还必须在正文初稿完成后执行原创性与文本质量检查。细则以根目录 `AIGC_DETECTION_PRINCIPLES.md` 和 `AGENTS.md` / `Claude.md` 为准。
+
 ### 3. 写作完成后
 
-根据正文变化同步更新：
-
-- llm-wiki 主线页面：压缩主线进度。
-- llm-wiki 总体大纲：记录章节组功能、阶段推进和后续规划，并关联章节龙骨。
-- novel 章节龙骨：记录本章核心推进和结尾变化。
-- llm-wiki 时间线页面：时间推进和事件顺序。
-- llm-wiki 伏笔页面：新增或回收伏笔。
-- llm-wiki 人物页面：经历、关系、性格变化、当前状态。
-- llm-wiki 世界设定页面：新地点、新组织、新规则、新术语。
-- 对应分类主节点：新增或更新具体档案卡链接；`llm-wiki/wiki/index.md` 只维护分类主节点入口。
-- `llm-wiki/wiki/log.md`：记录本次变更。
-- `llm-wiki/logs/`：记录矛盾、合并建议和人工处理结果。
+写作完成后，按 `AGENTS.md` / `Claude.md` 的“关联文件强制同步”矩阵处理。本方案只保留检查范围：主线、剧情总纲、章节龙骨、时间线、人物状态、关系状态、伏笔、世界设定、分类主节点、必要索引入口、日志和矛盾记录。
 
 还必须执行节点缺口检查：
 
@@ -294,4 +235,4 @@ llm-wiki 是日常资料入口。它负责：
 
 ## 当前本机状态
 
-本项目已经建立 llm-wiki 目录和规则；即使没有专用工具，也可以由 Codex 按 `AGENTS.md`，或由 Claude 按 `Claude.md`，结合 `llm-wiki/llm-wiki说明.md`、`llm-wiki/wiki/index.md` 和 `llm-wiki/wiki/log.md` 维护这套知识库。
+本仓库已经将小说项目骨架迁入 `templates/novel-project/`。即使没有专用工具，也可以由 Codex 按 `AGENTS.md`，或由 Claude 按 `Claude.md`，在复制出的小说实例中结合 `llm-wiki/llm-wiki说明.md`、`llm-wiki/wiki/index.md` 和 `llm-wiki/wiki/log.md` 维护知识库。

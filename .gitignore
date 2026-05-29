@@ -1,0 +1,16 @@
+# Local novel instances and private writing work.
+/projects/*
+!/projects/README.md
+
+# Prevent accidental root-level novel work from entering the framework repo.
+/raw/
+/novel/
+/llm-wiki/
+
+# Local environment and editor noise.
+.env
+.env.*
+*.local
+*.local.*
+Thumbs.db
+.DS_Store
