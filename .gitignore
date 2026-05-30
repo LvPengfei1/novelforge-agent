@@ -3,8 +3,6 @@
 !/作品/README.md
 
 # 防止根目录误写入小说内容
-/raw/
-/novel/
 /llm-wiki/
 /原始资料/
 /小说工程/
