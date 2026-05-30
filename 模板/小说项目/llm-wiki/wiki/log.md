@@ -151,6 +151,6 @@
 ## [2026-05-28] architecture | 区分框架仓库与小说实例
 
 - 来源：用户反馈正式开写后，小说正文和设定会污染框架仓库，导致智能体优化不易单独提交。
-- 影响页面：AGENTS.md、Claude.md、README.md、README.en.md、CHANGELOG.md、docs/project-instance-guide.md、docs/usage-guide.md、docs/novel-agent-plan.md、templates/README.md、projects/README.md、.gitignore、模板/小说项目/*
-- 处理结果：将空小说项目骨架迁入 `模板/小说项目/`；新增被 Git 忽略的 `projects/` 本地实例目录；明确真实小说应复制模板到 `projects/<novel-slug>/` 或仓库外部目录，框架仓库只提交规则、文档和空模板。
+- 影响页面：AGENTS.md、Claude.md、README.md、README.en.md、CHANGELOG.md、docs/project-instance-guide.md、docs/usage-guide.md、docs/novel-agent-plan.md、模板/README.md、作品/README.md、.gitignore、模板/小说项目/*
+- 处理结果：将空小说项目骨架迁入 `模板/小说项目/`；新增被 Git 忽略的 `作品/` 本地实例目录；明确真实小说应复制模板到 `作品/<novel-slug>/` 或仓库外部目录，框架仓库只提交规则、文档和空模板。
 - 是否影响 小说工程/ 正文或草稿：否，当前为仓库结构和模板位置调整。
