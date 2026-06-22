@@ -2,7 +2,7 @@
 
 NovelForge-Agent is a reusable agent framework for long-form novel writing. It uses `llm-wiki` as the daily knowledge entry point for story facts, settings, characters, the overall plot outline, timelines, foreshadowing, and continuity checks. Per-chapter spines live under `novel/03_plot/chapters/` and are reached through `llm-wiki/wiki/outline.md`.
 
-This repository is not a finished novel. It is a project structure and behavior-rule set for AI-assisted fiction writing.
+This repository is not a finished novel. It is a project structure and principle set for AI-assisted fiction writing.
 
 Real novels should live under `projects/<novel-slug>/` or outside this repository. The repository root is for framework rules, documentation, and empty templates, so manuscript work does not pollute framework commits.
 
@@ -13,11 +13,11 @@ Real novels should live under `projects/<novel-slug>/` or outside this repositor
 - Chinese usage manual: [docs/usage-guide.md](docs/usage-guide.md)
 - Project instance guide: [docs/project-instance-guide.md](docs/project-instance-guide.md)
 - AIGC quality control notes: [docs/aigc-quality-control.md](docs/aigc-quality-control.md)
-- Codex project rules: [AGENTS.md](AGENTS.md)
-- Claude project rules: [Claude.md](Claude.md)
+- Codex agent principles: [AGENTS.md](AGENTS.md)
+- Claude agent principles: [Claude.md](Claude.md)
 - Full framework plan: [docs/novel-agent-plan.md](docs/novel-agent-plan.md)
 - Changelog: [CHANGELOG.md](CHANGELOG.md)
-- 1.0.2 release notes: [docs/releases/v1.0.2.md](docs/releases/v1.0.2.md)
+- 1.0.3 release notes: [docs/releases/v1.0.3.md](docs/releases/v1.0.3.md)
 
 ## Goals
 
@@ -28,8 +28,9 @@ Real novels should live under `projects/<novel-slug>/` or outside this repositor
 - Use a staged workflow: project brief -> ingestion -> chapter spine -> draft -> edit check -> revision and recheck -> synchronization -> health check.
 - Label story facts and research conclusions with evidence levels so AI inferences are not treated as established facts.
 - After the chapter draft is complete, use `AIGC_DETECTION_PRINCIPLES.md` for originality and prose-quality checks; failed drafts must be revised and rechecked before synchronization.
+- Before drafting, derive a temporary content standard and story-only context capsule from the current novel project, so the manuscript layer receives story context instead of workflow logs or engineering checklists.
 - Keep raw sources, manuscripts, and searchable knowledge pages separated.
-- Give AI agents stable rules for drafting, rewriting, reviewing, and maintaining story knowledge.
+- Give AI agents stable principles for drafting, rewriting, reviewing, and maintaining story knowledge; concrete fields, checklists, and example constraints live in the current templates and novel instance.
 
 ## Project Structure
 
@@ -102,7 +103,7 @@ A chapter spine records only the high-density facts needed for continuity:
 
 A chapter is not considered complete until the manuscript, plot outline, chapter spine, continuity ledgers, associated-file synchronization check, and related `llm-wiki` pages are synchronized.
 
-Default chapter length is about 3,000 Chinese characters. A normal chapter should not be below 2,500 or above 4,000 main-text characters unless the exception is recorded in the chapter spine and log.
+If the current novel instance, user request, or target platform defines a chapter-length policy, record and verify it in the chapter spine and log. Without an explicit policy, the framework should not impose a global fixed word-count range.
 
 `llm-wiki` should be maintained as a linked knowledge base: manuscript text does not enter the wiki, but reusable characters, locations, organizations, rules, items, important scenes, foreshadowing, timelines, relationships, and states should become wiki nodes when they reach the card-creation threshold.
 
@@ -111,14 +112,14 @@ Default chapter length is about 3,000 Chinese characters. A normal chapter shoul
 1. Put original materials into `raw/`.
 2. Ingest long-term story facts into `llm-wiki/`.
 3. Before writing, read `llm-wiki/wiki/index.md`, `book-spine.md`, `llm-wiki/wiki/outline.md`, the current chapter spine, and related character, timeline, and foreshadowing pages.
-4. Write the manuscript in `novel/05_manuscript/`.
-5. After writing, use the chapter-spine checklist for prose-quality review, associated-file synchronization, node-gap checks, and logging.
+4. Derive the content standard and story-only context capsule, then write the manuscript in `novel/05_manuscript/`.
+5. After writing, use the chapter-spine checklist for prose naturalness, originality review, associated-file synchronization, node-gap checks, and logging.
 
 ## Agent Rule Files
 
 - Use `AGENTS.md` with Codex or other agents that read AGENTS rules.
 - Use `Claude.md` with Claude-based workflows.
-- Keep both files semantically synchronized. They define the same project behavior rules, with file names adapted for each agent.
+- Keep both files semantically synchronized. They define the same agent behavior principles, with file names adapted for each agent.
 
 ## License
 

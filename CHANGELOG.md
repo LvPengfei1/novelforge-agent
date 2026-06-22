@@ -4,6 +4,22 @@
 
 暂无。
 
+## 1.0.3 - 2026-06-22
+
+### Added
+
+- Added a writing-flow and context-isolation layer: agents now derive a temporary content execution standard from the current novel project before drafting.
+- Added the story-only content context capsule to keep manuscript generation focused on plot state, character motivation, chapter conflict, required progression, ending changes, and project prose style.
+- Added clean-manuscript rules: manuscript files should contain only the chapter title and prose, while change records, synchronization checks, revision reasons, and review notes belong in chapter spines, continuity files, or logs.
+- Added engineering-term translation rules to prevent workflow terms such as stages, anchors, interfaces, backends, consoles, synchronization, detection, and nodes from leaking into prose unless they naturally exist in the story world.
+- Added prose naturalness, project-fit, genre-derived quality checks, and reader-side retelling checks to the chapter spine template and query prompts.
+
+### Changed
+
+- Updated the recommended writing workflow to run project-derived content standards and context capsules before manuscript drafting.
+- Clarified that quality checks must derive genre expectations from the current project brief and story state rather than applying a fixed global genre standard.
+- Documented context separation between the main orchestration layer, story drafting layer, quality review layer, and continuity review layer without requiring separate agent files by default.
+
 ## 1.0.2 - 2026-05-28
 
 ### Added
