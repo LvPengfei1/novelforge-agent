@@ -2,7 +2,10 @@
 
 ## Unreleased
 
-暂无。
+### Added
+
+- Added prose naturalness rules focused on showing emotion through action, environment, dialogue, pauses, objects, character flaws, imperfect dialogue, and scene-grounded life details.
+- Added checks for over-explaining emotion, summarizing for the reader, over-polished dialogue, overly correct characters, missing life texture, and high-frequency summary phrases.
 
 ## 1.0.3 - 2026-06-22
 
