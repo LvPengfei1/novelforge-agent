@@ -14,3 +14,9 @@
 *.local.*
 Thumbs.db
 .DS_Store
+
+# Python development noise for the deterministic packet runner.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/

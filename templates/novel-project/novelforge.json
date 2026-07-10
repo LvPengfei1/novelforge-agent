@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "global_canon": {
+    "brief": "novel/00_project/brief.md",
+    "book_spine": "llm-wiki/wiki/book-spine.md",
+    "outline": "llm-wiki/wiki/outline.md",
+    "style_canon": "llm-wiki/wiki/rules/style-canon.md"
+  },
+  "review_principles": [
+    "NOVEL_REVIEW_PROTOCOL.md"
+  ],
+  "blocked_paths": [
+    "novel/08_archive",
+    "llm-wiki/logs",
+    "llm-wiki/wiki/log.md",
+    ".novelforge"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "chapter": "chXXX",
+  "spine": "novel/03_plot/chapters/chXXX-spine.md",
+  "draft": "novel/05_manuscript/chXXX.md",
+  "chapter_sources": [],
+  "previous_excerpt": null,
+  "recent_chapters": []
+}

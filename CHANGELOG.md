@@ -4,8 +4,23 @@
 
 ### Added
 
+- Added an installable Codex skill entry point and a standard-library Python CLI for project initialization, architecture validation, chapter packet preparation, independent review preparation, and stateless external-agent invocation.
+- Added machine-readable project and chapter job templates, source SHA-256 manifests, project-bound path validation, blocked-input enforcement, and stale-canon detection before review.
+- Added a required project style canon template so the documented global input set exists in every new novel instance.
+- Added `NOVEL_REVIEW_PROTOCOL.md` as the default reviewer-only canon, keeping detector-method research out of normal chapter review packets.
 - Added prose naturalness rules focused on showing emotion through action, environment, dialogue, pauses, objects, character flaws, imperfect dialogue, and scene-grounded life details.
 - Added checks for over-explaining emotion, summarizing for the reader, over-polished dialogue, overly correct characters, missing life texture, and high-frequency summary phrases.
+- Added an architecture approval gate that blocks formal chapter drafting while the story promise, protagonist desire, long-term engine, major relationship direction, or current arc endpoint remains unapproved.
+- Added a fresh-per-chapter writing workflow: each chapter uses a new writer without parent-conversation inheritance, an explicit input allowlist, required global canon files, and a separate fresh reviewer.
+- Added recent-chapter structural comparison so repeated narrative functions are diagnosed through scene purpose, choice, cost, information flow, and reader memory rather than keyword scanning.
+
+### Changed
+
+- Tightened prose review so keyword lists and detector statistics cannot serve as the analysis entry point; only explicitly approved hard constraints may be checked mechanically.
+- Bound architecture approval to substantive canon fields and exact file hashes, and added source-role boundaries so control files and reviewer-only comparison material cannot leak into writer packets.
+- Re-derived manifests and task bodies before invocation, locked review drafts, enforced run-state transitions and chapter filename binding, and rejected shell-backed command shims.
+- Reworked chapter planning around character desire, resistance, choice, cost, and irreversible state change.
+- Reframed AIGC review as evidence-based whole-scene reading followed by recent-chapter comparison and only then line-level revision.
 
 ## 1.0.3 - 2026-06-22
 

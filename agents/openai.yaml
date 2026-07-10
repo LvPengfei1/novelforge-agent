@@ -1,0 +1,6 @@
+interface:
+  display_name: "NovelForge Writing"
+  short_description: "隔离写作与审稿的长篇小说工作流"
+  default_prompt: "Use $novelforge-writing to prepare and run the next chapter with an isolated writer and reviewer."
+policy:
+  allow_implicit_invocation: true
